@@ -9,6 +9,9 @@ package sims;
 //import needed libraries for GUI
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Jacquelyn Johnson
@@ -52,7 +55,25 @@ public class SIMS extends JFrame{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        ex.addMouseListener(new java.awt.event.MouseAdapter(){
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent ae){
+                try {
+                    quitMouseClicked(ae);
+                } catch (IOException ex) {
+                    
+                }
+            }
+
+        });
     }
+        /**
+     * private method to handle the quit button click
+     */
+    private void quitMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
+        System.exit(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
