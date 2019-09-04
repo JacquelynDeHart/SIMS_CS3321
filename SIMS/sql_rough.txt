@@ -1,0 +1,15 @@
+SQL Database Structure:
+
+
+create table sims(
+student_id INTEGER, name TEXT, class STRING, gpa DECIMAL(3, 2)
+); {IDK how to have a table within a table for the classes and grades i have to look it up}
+
+create table grades(
+grade STRING );
+
+from sims join grades on class = grades.class;
+
+FOR ADMIN: select * from sims;
+
+FOR STUDENT: select student_id from sims;
