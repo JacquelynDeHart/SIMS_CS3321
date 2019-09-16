@@ -54,7 +54,6 @@ public class SIMS extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         ex.addMouseListener(new java.awt.event.MouseAdapter(){
             @Override
             public void mouseClicked(java.awt.event.MouseEvent ae){
