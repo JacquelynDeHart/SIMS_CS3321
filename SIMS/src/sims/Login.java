@@ -16,8 +16,9 @@ public class Login {
     /**
      * constructor for the Login class, accepts a String for the password verification
     */
-    public Login(String a){
+    public Login(String a, int ID){
         pass = a;
+        stuID = ID;
     }
     
     /**
@@ -26,7 +27,9 @@ public class Login {
      * @param a password to validate
      */
     public void passCheck(String a){
-        
+        //needs to pull password associated with the student ID from database to 
+        //validate
+        //return boolean
     }
     
     /**
