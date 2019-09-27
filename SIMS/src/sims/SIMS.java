@@ -22,38 +22,54 @@ public class SIMS extends JFrame{
     JFrame frame = new JFrame();
     
     //panels to stuff in the frame
-    JPanel admin, student;
+    JPanel login;
     
-    //buttons to push in the panels
-    JButton ad, st, ex;
+    //buttons to push in the panel
+    JButton ex, log, newUsr;            //ex = exit, log = login
+    JTextField IDkey, pass;     //IDkey = admin/student ID#, pass = password
+    JLabel idLabel, passLabel, frameLabel;  //labels to intro textfields/ frame
     
     /**
      * constructor for the class
      */
     public SIMS(){
         //make buttons a reality
-        ad = new JButton("Admin");
-        st = new JButton("Student");
         ex = new JButton("Exit Program");
+        log = new JButton("Login");
+        newUsr = new JButton("Create New User");
+        
+        //give text field some body
+        IDkey = new JTextField(10);
+        pass = new JTextField(10);
+        
+        //finalize label instantiation
+        frameLabel = new JLabel("Welcome to the login page:");
+        idLabel = new JLabel("Institution ID#");
+        passLabel = new JLabel("User password");
         
         //panel creation
-        admin = new JPanel();
-        student = new JPanel();
+        login = new JPanel();
         
         //place buttons in the panels with default BorderLayout manager
         //place panels in the frame. frame has the default BorderLayout manager
-        admin.add(ad, BorderLayout.NORTH);
-        student.add(st, BorderLayout.NORTH);
-        add(admin, BorderLayout.WEST);
-        add(student, BorderLayout.EAST);
+        login.add(frameLabel, BorderLayout.NORTH);
+        login.add(idLabel, BorderLayout.CENTER);
+        login.add(IDkey, BorderLayout.CENTER);
+        login.add(passLabel, BorderLayout.CENTER);
+        login.add(pass, BorderLayout.CENTER);
+        login.add(log, BorderLayout.CENTER);
+        login.add(newUsr, BorderLayout.SOUTH);
+        add(login, BorderLayout.CENTER);
         add(ex, BorderLayout.SOUTH);
         
         //pack, setRelativeLocation, visibility
         setTitle("Student Info Management System");
-        setSize(620, 300);
+        setSize(275, 275);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //add functionality to exit button
         ex.addMouseListener(new java.awt.event.MouseAdapter(){
             @Override
             public void mouseClicked(java.awt.event.MouseEvent ae){
