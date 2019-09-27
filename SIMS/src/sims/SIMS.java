@@ -81,12 +81,49 @@ public class SIMS extends JFrame{
             }
 
         });
+        
+        //add function to login button click
+        log.addMouseListener(new java.awt.event.MouseAdapter(){
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent ae){
+                try{
+                    logMouseClicked(ae);
+                } catch (IOException ex){
+                    
+                }
+            }
+        });
+        
+        //add function to newUsr button click
+        newUsr.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent ae){
+                try{
+                    newUsrMouseClicked(ae);
+                } catch (IOException ex){
+                    
+                }
+            }
+        });
     }
-        /**
+    /**
      * private method to handle the quit button click
      */
     private void quitMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
         System.exit(0);
+    }
+    /**
+     * private method to handle login button click
+     */
+    private void logMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
+        JOptionPane.showMessageDialog(null, "You clicked the Login button!");
+    }
+    
+    /**
+     * private method to handle newUsr button click
+     */
+    private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
+        JOptionPane.showMessageDialog(null, "You clicked the New User button!");
     }
     
     /**
