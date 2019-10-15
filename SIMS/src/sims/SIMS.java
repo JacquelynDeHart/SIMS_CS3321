@@ -9,6 +9,7 @@ package sims;
 //import needed libraries for GUI
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,16 +21,19 @@ import java.util.logging.Logger;
 public class SIMS extends JFrame{
     //frame for the program
     JFrame frame = new JFrame();
+    JFrame logging = new JFrame();
     
     //panels to stuff in the frame
     JPanel login;
     
     //buttons to push in the panel
     JButton ex, log, newUsr;            //ex = exit, log = login
-    JTextField IDkey, pass;     //IDkey = admin/student ID#, pass = password
+    JTextField IDkey;     //IDkey = admin/student ID#, pass = password
+    JPasswordField pass;
     JLabel idLabel, passLabel, frameLabel;  //labels to intro textfields/ frame
     int usrID;
     String passw;
+    private String OK = "ok";
     /**
      * constructor for the class
      */
@@ -41,8 +45,10 @@ public class SIMS extends JFrame{
         
         //give text field some body
         IDkey = new JTextField(10);
-        pass = new JTextField(10);
-        
+        pass = new JPasswordField(10);
+        pass.setActionCommand(OK);
+        //pass.addActionListener(new passActionListener(e));
+                
         //finalize label instantiation
         frameLabel = new JLabel("Welcome to the login page:");
         idLabel = new JLabel("Institution ID#");
@@ -60,15 +66,22 @@ public class SIMS extends JFrame{
         login.add(pass, BorderLayout.CENTER);
         login.add(log, BorderLayout.CENTER);
         login.add(newUsr, BorderLayout.SOUTH);
-        add(login, BorderLayout.CENTER);
-        add(ex, BorderLayout.SOUTH);
+        logging.add(login, BorderLayout.CENTER);
+        logging.add(ex, BorderLayout.SOUTH);
+        
         
         //pack, setRelativeLocation, visibility
-        setTitle("Student Info Management System");
-        setSize(275, 275);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        logging.setTitle("Student Info Management System");
+        logging.setSize(275, 275);
+        logging.setVisible(true);
+        logging.setLocationRelativeTo(null);
+        //when default close button is selected, the project doesn't close completely
+        logging.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //add functionality to exit button
         ex.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -103,6 +116,10 @@ public class SIMS extends JFrame{
                     newUsrMouseClicked(ae);
                     //String usr = (String) JOptionPane.showInputDialog(
                     //);
+                    logging.setVisible(false);
+                    //create frame for new user input and stuff
+                    JFrame newUsr = new JFrame("New User Information");
+                    
 
                 } catch (IOException ex){
                     
@@ -124,7 +141,11 @@ public class SIMS extends JFrame{
         String usrIdInput = IDkey.getText();
         //validation for usrID to be only integers
         usrID = Integer.parseInt(usrIdInput);
-        passw = pass.getText();
+        //passw = pass.getText();
+        //testing that the text was captured
+        System.out.println(usrID);
+        //System.out.println(passw);
+        
     }
     
     /**
@@ -133,7 +154,13 @@ public class SIMS extends JFrame{
     private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
         //JOptionPane.showMessageDialog(null, "You clicked the New User button!");
     }
-        
+    
+//    public class passActionListener implements ActionListener{
+//        void actionPerformed(ActionEvent e){
+//            
+//        }
+//    }
+//        
     /**
      * @param args the command line arguments
      */

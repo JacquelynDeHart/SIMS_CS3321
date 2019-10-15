@@ -9,7 +9,7 @@ package sims;
  *
  * @author Jacquelyn Johnson
  */
-public class newUsr {
+public class newUsr{
     public int bp;      //bp is the user defined admin or student profile to create
     
     
@@ -17,4 +17,6 @@ public class newUsr {
         bp = a;
         
     }
+    
+    
 }
