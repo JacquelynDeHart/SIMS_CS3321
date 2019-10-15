@@ -28,7 +28,8 @@ public class SIMS extends JFrame{
     JButton ex, log, newUsr;            //ex = exit, log = login
     JTextField IDkey, pass;     //IDkey = admin/student ID#, pass = password
     JLabel idLabel, passLabel, frameLabel;  //labels to intro textfields/ frame
-    
+    int usrID;
+    String passw;
     /**
      * constructor for the class
      */
@@ -100,6 +101,9 @@ public class SIMS extends JFrame{
             public void mouseClicked(java.awt.event.MouseEvent ae){
                 try{
                     newUsrMouseClicked(ae);
+                    //String usr = (String) JOptionPane.showInputDialog(
+                    //);
+
                 } catch (IOException ex){
                     
                 }
@@ -116,16 +120,20 @@ public class SIMS extends JFrame{
      * private method to handle login button click
      */
     private void logMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
-        JOptionPane.showMessageDialog(null, "You clicked the Login button!");
+        //JOptionPane.showMessageDialog(null, "You clicked the Login button!");
+        String usrIdInput = IDkey.getText();
+        //validation for usrID to be only integers
+        usrID = Integer.parseInt(usrIdInput);
+        passw = pass.getText();
     }
     
     /**
      * private method to handle newUsr button click
      */
     private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
-        JOptionPane.showMessageDialog(null, "You clicked the New User button!");
+        //JOptionPane.showMessageDialog(null, "You clicked the New User button!");
     }
-    
+        
     /**
      * @param args the command line arguments
      */
