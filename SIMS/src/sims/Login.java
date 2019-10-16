@@ -5,20 +5,31 @@
  */
 package sims;
 
+
+
+
 /**
  *
- * @author Jacquelyn Johnson
+ * @author Jacquelyn Johnson and Andrew Tomich
  */
 public class Login {
-    String pass;
-    int stuID;
+    String pass, UID;
     
     /**
-     * constructor for the Login class, accepts a String for the password verification
+     * constructor for the Login class, accepts two Strings for the password verification
     */
-    public Login(String a, int ID){
+    public Login(String a, String ID){
         pass = a;
-        stuID = ID;
+        UID = ID;
+        
+        if (passCheck(a,UID))
+        {
+            //EXECUTE SUCCESSFUL LOGIN
+        }
+        else
+        {
+            //DENY LOGIN AND DISPLAY MESSAGE IN FRAMES
+        }
     }
     
     /**
@@ -26,10 +37,43 @@ public class Login {
      * validation
      * @param a password to validate
      */
-    public void passCheck(String a){
+    public boolean passCheck(String a, String ID){
+        boolean valid = false;
         //needs to pull password associated with the student ID from database to 
         //validate
         //return boolean
+        
+        try{
+            String queryString = "SELECT SadminName, Spw FROM admins where SadminName=? and Spw=?";
+           
+            ps = con.prepareStatement(queryString);
+            ps.setString(1,a);
+            ps.setString(2,ID);
+            ResultSet results = ps.executeQuery();
+            
+            while (results.next()){
+                String dbID = results.getString("SadminName");
+                String dbPass = results.getString("Spw");
+                
+                if (ID.equals(dbID))
+                {
+                    if (a.equals(dbPass))
+                    {
+                        valid = true;
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            results.close();
+        } catch (SQLException sql) {
+            out.println(sql);
+        }  
+        
+        return valid;
     }
     
     /**
