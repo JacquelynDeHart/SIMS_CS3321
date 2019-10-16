@@ -13,6 +13,17 @@ package sims;
  * @author Jacquelyn Johnson and Andrew Tomich
  */
 public class Login {
+    
+    //Connect to the database
+    
+    String userName = "username";
+    String password = "password";
+
+    String url = "jdbc:sqlserver://MYPC\\SQLEXPRESS;databaseName=MYDB";
+
+    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+    Connection conn = DriverManager.getConnection(url, userName, password);
+    
     String pass, UID;
     
     /**
