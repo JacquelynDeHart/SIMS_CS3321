@@ -16,7 +16,9 @@ public class SimsUI extends JFrame{
      * no argument constructor
      */
     public SimsUI(){
-        makeFullScreen(ui);
+        //makeFullScreen(ui);
+        makeHalfScreen(ui);
+        ui.setTitle("New Frame");
     }
     
     
@@ -28,4 +30,13 @@ public class SimsUI extends JFrame{
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             aF.setSize(screenSize);
         }
+    
+    /**
+     * sets the frame size to that of half the size of the screen of the user
+     * @param aF frame to be sized to half the screensize
+     */
+    private void makeHalfScreen(JFrame aF){
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        aF.setSize((screenSize.width)/2, (screenSize.height)/2);
+    }
 }

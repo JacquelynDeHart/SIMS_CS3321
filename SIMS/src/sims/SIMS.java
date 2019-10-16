@@ -118,8 +118,8 @@ public class SIMS extends JFrame{
                     //);
                     logging.setVisible(false);
                     //create frame for new user input and stuff
-                    JFrame newUsr = new JFrame("New User Information");
-                    
+                    //JFrame newUsr = new JFrame("New User Information");
+                    new newUsr();
 
                 } catch (IOException ex){
                     
