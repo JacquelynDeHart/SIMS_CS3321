@@ -73,10 +73,6 @@ public class Login {
                         valid = true;
                         break;
                     }
-                    else
-                    {
-                        break;
-                    }
                 }
             }
             results.close();
