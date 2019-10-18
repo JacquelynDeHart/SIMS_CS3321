@@ -12,3 +12,9 @@ set GPA =
 	(select avg(points) from grades where studentID = 2001)
 
 where studentID = 2001;
+
+update students
+set GPA =
+	(select avg(points) from grades where studentID = 2002)
+
+where studentID = 2002;

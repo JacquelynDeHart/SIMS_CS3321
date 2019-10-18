@@ -6,7 +6,7 @@ values
 
 insert into students(studentID, studentName)
 values
-(2000, 'Andrew'), (2001, 'Julio');
+(2000, 'Andrew'), (2001, 'Julio'), (2002, 'Ary');
 
 insert into class(classID, className)
 values
@@ -14,4 +14,6 @@ values
 
 insert into grades(studentID, classID, grade, points)
 values
-(2000, 3304, 85, 3), (2000, 2410, 73, 2), (2000, 4310, 100, 4), (2001, 3301, 90, 4), (2001,2410, 100, 4), (2001, 4310, 80, 3);
+(2000, 3304, 'B-', 3.15), (2000, 2410, 'C+', 2.75), (2000, 4310, 'A+', 5), 
+(2001, 3301, 'A', 4), (2001,2410, 'B+', 3.75), (2001, 4310, 'B', 3),
+(2002, 3304, 'B', 3), (2002, 2410, 'B+', 3.75), (2002, 4310, 'B-', 3.15);

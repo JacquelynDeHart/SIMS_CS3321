@@ -1,9 +1,9 @@
 /*SUBQUERIES FOR VIEWING TABLES IN DATABASE*/
 
-select * from grades
+select * from admins
 
 select * from students
 
-select * from admins
-
 select * from class
+
+select * from grades
