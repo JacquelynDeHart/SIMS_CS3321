@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class creates the frame for adding a new user and houses the functions and 
+ * methods to gather all the information from the new user with which to
+ * populate the database.
  */
 package sims;
 
@@ -21,29 +21,33 @@ public class newUsr extends JFrame{
     private final String[] profSelect = {"Student","Administrator"};
     JComboBox profile = new JComboBox(profSelect);
     JTextField showID = new JTextField(10);
-    JPasswordField adminCheck = new JPasswordField(4);
-    JButton quit, submit;
+    JLabel passwordIn;
+    JButton quit, submit, cont;
     JPanel grid = new JPanel();
-    int newID;
-    String newPass; //needs to be setup
+    int newID; private final int pin = 7951;
+    String newPass;
+    JTextField newPassw = new JTextField(12);
     
     /**
-     * no argument constructor for the class
+     * no argument constructor for the class.
      */
     public newUsr(){
         makeHalfScreen(ui);
         quit = new JButton("Cancel");
         submit = new JButton("Submit");
+        cont = new JButton("Continue");
         showID.setEditable(false);
+        passwordIn = new JLabel("Enter a password up to 12 digits:");
         grid.setLayout(new GridLayout(0,2));
         disp.add(profile, BorderLayout.WEST);
         disp.add(showID, BorderLayout.CENTER);
+        disp.add(passwordIn, BorderLayout.CENTER);
+        disp.add(newPassw, BorderLayout.CENTER);
+        disp.add(cont, BorderLayout.EAST);
         grid.add(quit); grid.add(submit);
         
         ui.add(disp, BorderLayout.WEST);
         ui.add(grid, BorderLayout.SOUTH);
-        
-        //ui.add(submit, BorderLayout.SOUTH);
         
         ui.setTitle("Create New User Profile");
         ui.setLocationRelativeTo(null);
@@ -62,12 +66,18 @@ public class newUsr extends JFrame{
                 submitMouseClicked(ae);
             }
         });
+        cont.addMouseListener(new java.awt.event.MouseAdapter (){
+           @Override
+           public void mouseClicked(java.awt.event.MouseEvent ae){
+               contMouseClicked(ae);
+           }
+        });
     }
-    
-    public newUsr(int a){
-        bp = a;
-        
-    }
+//    
+//    public newUsr(int a){
+//        bp = a;
+//        
+//    }
     
     /**
      * sets the frame size to that of half the size of the screen of the user
@@ -79,19 +89,30 @@ public class newUsr extends JFrame{
     }
     
     /**
-     * method for cancel button click
+     * method for cancel button click.
      */
     private void quitMouseClicked(java.awt.event.MouseEvent ae){
         new SIMS();
     }
     
     /**
-     * method for submit mouse click
+     * method for submit mouse click.
      */
     private void submitMouseClicked(java.awt.event.MouseEvent ae){
         //capture all the information from user input and feed it to the database here
         
         //after it's sent to the database, refactor and return to the login option
+    }
+    /**
+     *method for contMouseClicked. Will ask the user if they want to add courses
+     * now. If yes, calls a method that will connect to the LinkedList of the 
+     * courses and allow courses to be added one at a time
+     */
+    private void contMouseClicked(java.awt.event.MouseEvent ae){
+        String text = (String)profile.getSelectedItem();
+        if(text == "Administrator"){
+            pinValidate();
+        }
     }
     
     /**
@@ -101,7 +122,41 @@ public class newUsr extends JFrame{
      */
     public int newIDGen(){
         //pull the last ID entry from the database
-        newID = 10000001 +1;
+        //newID = 10000001 +1;  //only here to demonstrate the incrementation
+                                //for the variable
         return newID;
+    }
+    
+    /**
+     * overloaded method for administrator ID creation. will be called only from
+     * the pinValidate method
+     * @param i the key code for the database selection to create an Administrator ID
+     */
+    private int newIDGen(int i){
+        //newID = 20000001 +1;      //same as above
+        return newID;
+    }
+    
+    /**
+     * this method will validate a pin if the "Administrator" option is chosen
+     * by displaying a JOptionPane which will accept the pin input and compare
+     * it to a private final variable that is hard coded in the program.
+     */
+    private void pinValidate(){
+        String input = JOptionPane.showInputDialog("Please Enter the 4-digit"
+        +" pin\n to validate Administrator profile creation");
+        //run input validation here...............
+        int count = 0;
+        while(count<4){
+            int pinCheck = Integer.parseInt(input);
+            if(pinCheck!= pin){
+                input = JOptionPane.showInputDialog("Enter the correct pin.\n"
+                +" You have "+(4-count)+" tries left"); count++;
+            }else{
+                //generate an Administrator profile ID
+                newIDGen(1); break;
+            }
+            
+        }
     }
 }
