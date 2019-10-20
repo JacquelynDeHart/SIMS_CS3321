@@ -6,27 +6,25 @@
 package sims;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.io.IOException;
 
 /**
  *
  * @author Jacquelyn Johnson
  */
 public class newUsr extends JFrame{
-    public int bp;      //bp is the user defined admin or student profile to create
     JFrame ui = new JFrame();
     JPanel disp = new JPanel();
+    JPanel grid = new JPanel();
+    JLabel passwordIn;
+    JButton quit, submit, cont;
     private final String[] profSelect = {"Student","Administrator"};
     JComboBox profile = new JComboBox(profSelect);
     JTextField showID = new JTextField(10);
-    JLabel passwordIn;
-    JButton quit, submit, cont;
-    JPanel grid = new JPanel();
+    JTextField newPassw = new JTextField(12);
+    
     int newID; private final int pin = 7951;
     String newPass;
-    JTextField newPassw = new JTextField(12);
     
     /**
      * no argument constructor for the class.
@@ -73,11 +71,6 @@ public class newUsr extends JFrame{
            }
         });
     }
-//    
-//    public newUsr(int a){
-//        bp = a;
-//        
-//    }
     
     /**
      * sets the frame size to that of half the size of the screen of the user
@@ -102,6 +95,7 @@ public class newUsr extends JFrame{
         //capture all the information from user input and feed it to the database here
         
         //after it's sent to the database, refactor and return to the login option
+        new SIMS();
     }
     /**
      *method for contMouseClicked. Will ask the user if they want to add courses
@@ -111,8 +105,9 @@ public class newUsr extends JFrame{
     private void contMouseClicked(java.awt.event.MouseEvent ae){
         String text = (String)profile.getSelectedItem();
         if(text == "Administrator"){
-            pinValidate();
-        }
+            pinValidate();  //validate clearance for creating a admin profile
+            
+        }       
     }
     
     /**
