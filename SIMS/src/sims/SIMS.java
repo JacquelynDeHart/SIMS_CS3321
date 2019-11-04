@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class SIMS extends JFrame{
     //frame for the program
-    JFrame frame = new JFrame();
+    //JFrame frame = new JFrame();
     JFrame logging = new JFrame();
     
     //panels to stuff in the frame
@@ -78,10 +78,10 @@ public class SIMS extends JFrame{
         //when default close button is selected, the project doesn't close completely
         logging.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(screenSize);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        frame.setSize(screenSize);
+//        frame.setVisible(true);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //add functionality to exit button
         ex.addMouseListener(new java.awt.event.MouseAdapter(){

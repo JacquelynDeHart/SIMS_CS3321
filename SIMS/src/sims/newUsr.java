@@ -93,7 +93,7 @@ public class newUsr extends JFrame{
      */
     private void submitMouseClicked(java.awt.event.MouseEvent ae){
         //capture all the information from user input and feed it to the database here
-        
+        ui.setVisible(false);
         //after it's sent to the database, refactor and return to the login option
         new SIMS();
     }
