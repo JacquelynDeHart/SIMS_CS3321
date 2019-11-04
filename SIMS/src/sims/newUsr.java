@@ -1,5 +1,5 @@
 /**
- * This class creates the frame for adding a new user and houses the functions and 
+ * This class creates the panels for adding a new user and houses the functions and 
  * methods to gather all the information from the new user with which to
  * populate the database.
  */
@@ -12,8 +12,7 @@ import javax.swing.*;
  *
  * @author Jacquelyn Johnson
  */
-public class newUsr extends JFrame{
-    JFrame ui = new JFrame();
+public class newUsr extends JPanel{
     JPanel disp = new JPanel();
     JPanel grid = new JPanel();
     JLabel passwordIn;
@@ -30,26 +29,24 @@ public class newUsr extends JFrame{
      * no argument constructor for the class.
      */
     public newUsr(){
-        makeHalfScreen(ui);
+        //assign parameters to instantiated variables
         quit = new JButton("Cancel");
         submit = new JButton("Submit");
         cont = new JButton("Continue");
         showID.setEditable(false);
         passwordIn = new JLabel("Enter a password up to 12 digits:");
-        grid.setLayout(new GridLayout(0,2));
+        
         disp.add(profile, BorderLayout.WEST);
         disp.add(showID, BorderLayout.CENTER);
         disp.add(passwordIn, BorderLayout.CENTER);
         disp.add(newPassw, BorderLayout.CENTER);
         disp.add(cont, BorderLayout.EAST);
+        
+        grid.setLayout(new GridLayout(0,2));
         grid.add(quit); grid.add(submit);
         
-        ui.add(disp, BorderLayout.WEST);
-        ui.add(grid, BorderLayout.SOUTH);
-        
-        ui.setTitle("Create New User Profile");
-        ui.setLocationRelativeTo(null);
-        ui.setVisible(true);
+        add(disp);
+        add(grid);
         
         quit.addMouseListener(new java.awt.event.MouseAdapter(){
             @Override
@@ -73,19 +70,11 @@ public class newUsr extends JFrame{
     }
     
     /**
-     * sets the frame size to that of half the size of the screen of the user
-     * @param aF frame to be sized to half the screenSize
-     */
-    private void makeHalfScreen(JFrame aF){
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        aF.setSize((screenSize.width)/2, (screenSize.height)/2);
-    }
-    
-    /**
      * method for cancel button click.
      */
     private void quitMouseClicked(java.awt.event.MouseEvent ae){
-        new SIMS();
+//figure out how to return control to the JFrame from here        
+//new SIMS();
     }
     
     /**
@@ -93,9 +82,8 @@ public class newUsr extends JFrame{
      */
     private void submitMouseClicked(java.awt.event.MouseEvent ae){
         //capture all the information from user input and feed it to the database here
-        ui.setVisible(false);
-        //after it's sent to the database, refactor and return to the login option
-        new SIMS();
+        
+        //after it's sent to the database, refactor and return to the login panel
     }
     /**
      *method for contMouseClicked. Will ask the user if they want to add courses
@@ -155,3 +143,13 @@ public class newUsr extends JFrame{
         }
     }
 }
+////
+////    /**
+////     * sets the frame size to that of half the size of the screen of the user
+////     * @param aF frame to be sized to half the screenSize
+////     */
+////    private void makeHalfScreen(JFrame aF){
+////        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+////        aF.setSize((screenSize.width)/2, (screenSize.height)/2);
+////    }
+////    

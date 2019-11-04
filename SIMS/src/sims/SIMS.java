@@ -11,8 +11,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+/**
+ * next steps: pull in the Login class JPanel once the user clicks the login button
+ * and have it display within the frame. rethink the LayoutManager of the JFrame 
+ * itself, possibly consider changing the LayoutManager on button click and JPanel 
+ * changes... Figure out the database connection in Java (Julio): there is a lot 
+ * to do on the Login class for this and some in the logMouseClicked method in this 
+ * class. 11032019.
+ */
 /**
  *
  * @author Jacquelyn Johnson
@@ -20,7 +26,6 @@ import java.util.logging.Logger;
 
 public class SIMS extends JFrame{
     //frame for the program
-    //JFrame frame = new JFrame();
     JFrame logging = new JFrame();
     
     //panels to stuff in the frame
@@ -79,9 +84,7 @@ public class SIMS extends JFrame{
         logging.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
 //        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//        frame.setSize(screenSize);
-//        frame.setVisible(true);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         
         //add functionality to exit button
         ex.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -116,13 +119,12 @@ public class SIMS extends JFrame{
                     newUsrMouseClicked(ae);
                     //String usr = (String) JOptionPane.showInputDialog(
                     //);
-                    logging.setVisible(false);
-                    //create frame for new user input and stuff
-                    //JFrame newUsr = new JFrame("New User Information");
-                    new newUsr();
-
-                } catch (IOException ex){
                     
+                    //create and display panel for new user input and stuff
+                    
+                    
+                } catch (IOException ex){
+                    System.out.println("Something broke in the newUsr button");
                 }
             }
         });
@@ -151,8 +153,15 @@ public class SIMS extends JFrame{
     /**
      * private method to handle newUsr button click
      */
-    private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
-        //JOptionPane.showMessageDialog(null, "You clicked the New User button!");
+    private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{       
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        logging.setSize((screenSize.width)/2, (screenSize.height)/2);
+
+        logging.getContentPane().removeAll();
+        logging.getContentPane().add(new newUsr());
+        logging.revalidate();
+ 
+        
     }
     
 //    public class passActionListener implements ActionListener{
