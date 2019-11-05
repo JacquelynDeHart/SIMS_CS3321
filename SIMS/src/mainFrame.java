@@ -36,7 +36,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/owner/Downloads/uhd_gatorbust.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uhd_gatorbust.jpg"))); // NOI18N
 
         jLabel2.setText("Institution ID");
 
