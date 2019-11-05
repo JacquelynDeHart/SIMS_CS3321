@@ -83,6 +83,7 @@ public class SIMS extends JFrame{
         //when default close button is selected, the project doesn't close completely
         logging.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
+        //logging.pack();
 //        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         
@@ -143,10 +144,18 @@ public class SIMS extends JFrame{
         String usrIdInput = IDkey.getText();
         //validation for usrID to be only integers
         usrID = Integer.parseInt(usrIdInput);
-        //passw = pass.getText();
+        passw = pass.getText();
         //testing that the text was captured
         System.out.println(usrID);
         //System.out.println(passw);
+        //The following code block will resize the frame, add the new JPanel to 
+        //it from the Login class 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        logging.setSize(screenSize.width, screenSize.height);
+        logging.getContentPane().removeAll();
+        logging.getContentPane().add(new Login(passw, usrID));
+        logging.revalidate();
+ 
         
     }
     
@@ -155,8 +164,8 @@ public class SIMS extends JFrame{
      */
     private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{       
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        logging.setSize((screenSize.width)/2, (screenSize.height)/2);
-
+        logging.setSize(screenSize.width, screenSize.height);
+        logging.setLayout(new FlowLayout());
         logging.getContentPane().removeAll();
         logging.getContentPane().add(new newUsr());
         logging.revalidate();
@@ -175,7 +184,7 @@ public class SIMS extends JFrame{
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new SIMS();
+        //new SIMS();
     }
     
 }

@@ -36,11 +36,17 @@ public class newUsr extends JPanel{
         showID.setEditable(false);
         passwordIn = new JLabel("Enter a password up to 12 digits:");
         
-        disp.add(profile, BorderLayout.WEST);
-        disp.add(showID, BorderLayout.CENTER);
-        disp.add(passwordIn, BorderLayout.CENTER);
-        disp.add(newPassw, BorderLayout.CENTER);
-        disp.add(cont, BorderLayout.EAST);
+//        disp.add(profile, BorderLayout.WEST);
+//        disp.add(showID, BorderLayout.CENTER);
+//        disp.add(passwordIn, BorderLayout.CENTER);
+//        disp.add(newPassw, BorderLayout.CENTER);
+//        disp.add(cont, BorderLayout.EAST);
+        
+        disp.add(profile);
+        disp.add(showID);
+        disp.add(passwordIn);
+        disp.add(newPassw);
+        disp.add(cont);
         
         grid.setLayout(new GridLayout(0,2));
         grid.add(quit); grid.add(submit);
