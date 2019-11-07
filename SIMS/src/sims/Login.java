@@ -31,10 +31,13 @@ public class Login extends JPanel{
      * validation
      * @param a password to validate
      */
-    public void passCheck(String a){
+    public static boolean passCheck(String a){  //might need to add a param for userID
         //needs to pull password associated with the student ID from database to 
         //validate
-        //return boolean
+        boolean flag = false;
+        //call database and pull associated userID password to validate.
+        //test it here... change flag appropriately 
+        return flag;
     }
     
     /**
