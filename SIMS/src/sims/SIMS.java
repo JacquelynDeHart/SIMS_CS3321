@@ -184,7 +184,8 @@ public class SIMS extends JFrame{
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //new SIMS();
+        //new SIMS(); 
+        
     }
     
 }
