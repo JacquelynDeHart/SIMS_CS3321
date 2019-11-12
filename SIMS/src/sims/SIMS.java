@@ -37,7 +37,7 @@ public class SIMS extends JFrame{
     JPasswordField pass;
     JLabel idLabel, passLabel, frameLabel;  //labels to intro textfields/ frame
     int usrID;
-    String passw;
+    char[] passw;
     private String OK = "ok";
     /**
      * constructor for the class
@@ -144,7 +144,7 @@ public class SIMS extends JFrame{
         String usrIdInput = IDkey.getText();
         //validation for usrID to be only integers
         usrID = Integer.parseInt(usrIdInput);
-        passw = pass.getText();
+        passw = pass.getPassword();
         //testing that the text was captured
         System.out.println(usrID);
         //System.out.println(passw);
@@ -153,7 +153,7 @@ public class SIMS extends JFrame{
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         logging.setSize(screenSize.width, screenSize.height);
         logging.getContentPane().removeAll();
-        logging.getContentPane().add(new Login(passw, usrID));
+        //logging.getContentPane().add(new Login(passw, usrID));
         logging.revalidate();
  
         

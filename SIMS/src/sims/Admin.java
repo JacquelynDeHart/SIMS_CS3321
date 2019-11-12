@@ -29,7 +29,7 @@ public class Admin extends javax.swing.JPanel {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelSelectTab = new javax.swing.JTabbedPane();
         modify = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         studID = new javax.swing.JTextField();
@@ -42,9 +42,12 @@ public class Admin extends javax.swing.JPanel {
         studName = new javax.swing.JTextField();
         passw = new javax.swing.JTextField();
         submitNew = new javax.swing.JButton();
+        tab3 = new javax.swing.JPanel();
+        exit = new javax.swing.JButton();
 
         studID.setText("Student ID");
 
+        modStudent.setMnemonic('s');
         modStudent.setText("Select");
         modStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -86,7 +89,7 @@ public class Admin extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Modify", modify);
+        panelSelectTab.addTab("Modify", modify);
 
         addNew.setToolTipText("");
 
@@ -102,6 +105,11 @@ public class Admin extends javax.swing.JPanel {
         submitNew.setMnemonic('s');
         submitNew.setText("Submit");
         submitNew.setToolTipText("Click to submit new student information");
+        submitNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitNewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addNewLayout = new javax.swing.GroupLayout(addNew);
         addNew.setLayout(addNewLayout);
@@ -138,54 +146,99 @@ public class Admin extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Add New", addNew);
+        panelSelectTab.addTab("Add New", addNew);
+
+        javax.swing.GroupLayout tab3Layout = new javax.swing.GroupLayout(tab3);
+        tab3.setLayout(tab3Layout);
+        tab3Layout.setHorizontalGroup(
+            tab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 511, Short.MAX_VALUE)
+        );
+        tab3Layout.setVerticalGroup(
+            tab3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 278, Short.MAX_VALUE)
+        );
+
+        panelSelectTab.addTab("tab3", tab3);
+
+        exit.setMnemonic('x');
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelSelectTab))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSelectTab, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exit))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * this method will pull the student ID from the text field, pass it to the database
+ * and populate the text area with the values associated.
+ * @param evt the mouse event 
+ */
     private void modStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modStudentMouseClicked
         // TODO add your handling code here:
         //pull the student ID from the text field, pass it to the database and
         //populate the text area with the values from the database
         
     }//GEN-LAST:event_modStudentMouseClicked
+/**
+ * this method will pull text from the JTextFields on the Add New tab and will 
+ * make an entry into the database.
+ * @param evt the mouse event
+ */
+    private void submitNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitNewActionPerformed
+        // TODO add your handling code here:
+        // pull text from the JTextFields and insert into the database
+    }//GEN-LAST:event_submitNewActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addNew;
     private javax.swing.JTextArea dispSelected;
+    private javax.swing.JButton exit;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton modStudent;
     private javax.swing.JPanel modify;
+    private javax.swing.JTabbedPane panelSelectTab;
     private javax.swing.JTextField passw;
     private javax.swing.JLabel stuNameLabel;
     private javax.swing.JTextField studID;
     private javax.swing.JTextField studName;
     private javax.swing.JButton submitNew;
+    private javax.swing.JPanel tab3;
     // End of variables declaration//GEN-END:variables
 }

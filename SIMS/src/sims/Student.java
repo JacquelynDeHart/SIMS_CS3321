@@ -29,17 +29,18 @@ public class Student extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        studentID = new javax.swing.JTextField();
+        stuDispInfo = new javax.swing.JTextArea();
+        studentIDDisp = new javax.swing.JTextField();
         logout = new javax.swing.JButton();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        stuDispInfo.setEditable(false);
+        stuDispInfo.setColumns(20);
+        stuDispInfo.setRows(5);
+        jScrollPane1.setViewportView(stuDispInfo);
 
-        studentID.setEditable(false);
-        studentID.setText("Student ID");
-        studentID.setToolTipText("Institution ID");
+        studentIDDisp.setEditable(false);
+        studentIDDisp.setText("Student ID");
+        studentIDDisp.setToolTipText("Institution ID");
 
         logout.setText("Logout");
         logout.setToolTipText("Logout & Close");
@@ -61,7 +62,7 @@ public class Student extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(studentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(studentIDDisp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -69,7 +70,7 @@ public class Student extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addComponent(studentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentIDDisp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -84,8 +85,8 @@ public class Student extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton logout;
-    private javax.swing.JTextField studentID;
+    private javax.swing.JTextArea stuDispInfo;
+    private javax.swing.JTextField studentIDDisp;
     // End of variables declaration//GEN-END:variables
 }
