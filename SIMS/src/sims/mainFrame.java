@@ -123,7 +123,7 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //validate userID and password from database. if valid, change panels to 
         //appropriate one (Student || Admin)
-        if (Login.passCheck(pass.getPassword()) == true){
+        if (Login.passCheck(pass.getPassword(), Integer.parseInt(instID.getText())) == true){
             //check userID for which table to pull panel from
             
         }
