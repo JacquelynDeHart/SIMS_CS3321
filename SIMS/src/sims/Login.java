@@ -39,7 +39,7 @@ public class Login extends JPanel{
         boolean flag = false;
         //call database and pull associated userID password to validate.
         //test it here... change flag appropriately 
-        
+        flag = true;
         return flag;
     }
     
