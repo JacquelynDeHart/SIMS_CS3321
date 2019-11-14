@@ -1,0 +1,7 @@
+CS 1410	CS1
+CS 2410	CS2
+CS 3304	CS3
+CS 3321	Software Engineering
+CS 3306 Theory of Computation
+MATH 3302 Statistics
+MATH 2401 Calculus 2

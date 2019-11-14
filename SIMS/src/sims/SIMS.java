@@ -9,9 +9,16 @@ package sims;
 //import needed libraries for GUI
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+/**
+ * next steps: pull in the Login class JPanel once the user clicks the login button
+ * and have it display within the frame. rethink the LayoutManager of the JFrame 
+ * itself, possibly consider changing the LayoutManager on button click and JPanel 
+ * changes... Figure out the database connection in Java (Julio): there is a lot 
+ * to do on the Login class for this and some in the logMouseClicked method in this 
+ * class. 11032019.
+ */
 /**
  *
  * @author Jacquelyn Johnson
@@ -19,16 +26,19 @@ import java.util.logging.Logger;
 
 public class SIMS extends JFrame{
     //frame for the program
-    JFrame frame = new JFrame();
+    JFrame logging = new JFrame();
     
     //panels to stuff in the frame
     JPanel login;
     
     //buttons to push in the panel
     JButton ex, log, newUsr;            //ex = exit, log = login
-    JTextField IDkey, pass;     //IDkey = admin/student ID#, pass = password
+    JTextField IDkey;     //IDkey = admin/student ID#, pass = password
+    JPasswordField pass;
     JLabel idLabel, passLabel, frameLabel;  //labels to intro textfields/ frame
-    
+    int usrID;
+    char[] passw;
+    private String OK = "ok";
     /**
      * constructor for the class
      */
@@ -40,8 +50,10 @@ public class SIMS extends JFrame{
         
         //give text field some body
         IDkey = new JTextField(10);
-        pass = new JTextField(10);
-        
+        pass = new JPasswordField(10);
+        pass.setActionCommand(OK);
+        //pass.addActionListener(new passActionListener(e));
+                
         //finalize label instantiation
         frameLabel = new JLabel("Welcome to the login page:");
         idLabel = new JLabel("Institution ID#");
@@ -59,15 +71,21 @@ public class SIMS extends JFrame{
         login.add(pass, BorderLayout.CENTER);
         login.add(log, BorderLayout.CENTER);
         login.add(newUsr, BorderLayout.SOUTH);
-        add(login, BorderLayout.CENTER);
-        add(ex, BorderLayout.SOUTH);
+        logging.add(login, BorderLayout.CENTER);
+        logging.add(ex, BorderLayout.SOUTH);
+        
         
         //pack, setRelativeLocation, visibility
-        setTitle("Student Info Management System");
-        setSize(275, 275);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        logging.setTitle("Student Info Management System");
+        logging.setSize(275, 275);
+        logging.setVisible(true);
+        logging.setLocationRelativeTo(null);
+        //when default close button is selected, the project doesn't close completely
+        logging.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        //logging.pack();
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
         
         //add functionality to exit button
         ex.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -100,8 +118,14 @@ public class SIMS extends JFrame{
             public void mouseClicked(java.awt.event.MouseEvent ae){
                 try{
                     newUsrMouseClicked(ae);
-                } catch (IOException ex){
+                    //String usr = (String) JOptionPane.showInputDialog(
+                    //);
                     
+                    //create and display panel for new user input and stuff
+                    
+                    
+                } catch (IOException ex){
+                    System.out.println("Something broke in the newUsr button");
                 }
             }
         });
@@ -116,22 +140,52 @@ public class SIMS extends JFrame{
      * private method to handle login button click
      */
     private void logMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
-        JOptionPane.showMessageDialog(null, "You clicked the Login button!");
+        //JOptionPane.showMessageDialog(null, "You clicked the Login button!");
+        String usrIdInput = IDkey.getText();
+        //validation for usrID to be only integers
+        usrID = Integer.parseInt(usrIdInput);
+        passw = pass.getPassword();
+        //testing that the text was captured
+        System.out.println(usrID);
+        //System.out.println(passw);
+        //The following code block will resize the frame, add the new JPanel to 
+        //it from the Login class 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        logging.setSize(screenSize.width, screenSize.height);
+        logging.getContentPane().removeAll();
+        //logging.getContentPane().add(new Login(passw, usrID));
+        logging.revalidate();
+ 
+        
     }
     
     /**
      * private method to handle newUsr button click
      */
-    private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{
-        JOptionPane.showMessageDialog(null, "You clicked the New User button!");
+    private void newUsrMouseClicked(java.awt.event.MouseEvent ae) throws IOException{       
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        logging.setSize(screenSize.width, screenSize.height);
+        logging.setLayout(new FlowLayout());
+        logging.getContentPane().removeAll();
+        logging.getContentPane().add(new newUsr());
+        logging.revalidate();
+ 
+        
     }
     
+//    public class passActionListener implements ActionListener{
+//        void actionPerformed(ActionEvent e){
+//            
+//        }
+//    }
+//        
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        new SIMS();
-    }
-    
+//    public static void main(String[] args) {
+//        // TODO code application logic here
+//        //new SIMS(); 
+//        //new mainFrame();
+//    }
+//    
 }

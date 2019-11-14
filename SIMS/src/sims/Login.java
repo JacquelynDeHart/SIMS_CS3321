@@ -4,21 +4,26 @@
  * all courses, viewing enrolled classes, viewing GPA, and GPA calculation.
  */
 package sims;
-
+import javax.swing.*;
 /**
  *
  * @author Jacquelyn Johnson
  */
-public class Login {
-    String pass;
-    int stuID;
-    
+public class Login extends JPanel{
+    private String pass;
+    private int stuID;
+    private JPanel display;
     /**
-     * constructor for the Login class, accepts a String for the password verification
-    */
+     * constructor for the class.
+     * @param a the password from the user login process
+     * @param ID the ID key that identifies the user
+     */
     public Login(String a, int ID){
         pass = a;
         stuID = ID;
+        
+        display = new JPanel();
+        
     }
     
     /**
@@ -26,45 +31,57 @@ public class Login {
      * validation
      * @param a password to validate
      */
-    public void passCheck(String a){
+    public static boolean passCheck(char[] a, int ID){  //might need to add a param for userID
         //needs to pull password associated with the student ID from database to 
         //validate
-        //return boolean
+        int id = ID;
+        char[] passw= a;
+        boolean flag = false;
+        //call database and pull associated userID password to validate.
+        //test it here... change flag appropriately 
+        
+        return flag;
     }
     
     /**
      * add a class method
      */
     public void addClass(){
-        
+        //make JComboBox here with courses to select from. Consider using an ArrayList
+        //or a LinkedList for the courses
     }
     
     /**
      * delete a class method
      */
     public void delClass(){
-        
+        //same as above, except the course population will be from the database table
+        // data that is associated with this user
     }
     
     /**
      * view enrolled class method
      */
     public void viewClasses(){
-        
+        //automatically display the classes that the student is enrolled in once
+        //they actually enroll in them. place in the panel in a nonEditable JTextBox 
+        //or something along those lines. Maybe consider having the database somehow
+        //output their associated values here
     }
     
     /**
      * view grades for all courses enrolled
      */
     public void viewGrades(){
-        
+        //maybe consider combining this method with above
     }
     
     /**
      * view GPA
      */
     public void showGPA(){
-        
+        //add the grades together for a specific student and divide by the number
+        //of classes that they have taken.
     }
     
 //    /**
