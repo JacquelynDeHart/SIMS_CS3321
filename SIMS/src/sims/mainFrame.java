@@ -134,9 +134,10 @@ public class mainFrame extends javax.swing.JFrame {
         if (Login.passCheck(pass.getPassword(), Integer.parseInt(instID.getText())) == true){
             //check userID for which table to pull panel from
             if(Integer.parseInt(instID.getText()) == 1){
-                mainLoginPanel.setVisible(false);
-                add(new Student()).setVisible(true);
-                repaint();
+                new AdminFrame().setVisible(true);
+                dispose();
+                //add(new Student()).setVisible(true);
+                //repaint();
                 
             }
         }
