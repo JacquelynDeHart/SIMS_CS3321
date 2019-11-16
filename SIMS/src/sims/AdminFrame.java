@@ -5,6 +5,8 @@
  */
 package sims;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author owner
@@ -34,9 +36,11 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         modStudent = new javax.swing.JButton();
         selectStudentDisp = new javax.swing.JScrollPane();
-        dispSelected = new javax.swing.JTextArea();
+        selStudTable = new javax.swing.JTable();
         allStudentDisp = new javax.swing.JScrollPane();
         dispAllTable = new javax.swing.JTable();
+        addClass = new javax.swing.JButton();
+        addGrades = new javax.swing.JButton();
         addNew = new javax.swing.JPanel();
         stuNameLabel = new javax.swing.JLabel();
         passwLabel = new javax.swing.JLabel();
@@ -57,9 +61,18 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
-        dispSelected.setColumns(20);
-        dispSelected.setRows(5);
-        selectStudentDisp.setViewportView(dispSelected);
+        selStudTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        selectStudentDisp.setViewportView(selStudTable);
 
         dispAllTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,6 +87,15 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         allStudentDisp.setViewportView(dispAllTable);
 
+        addClass.setText("Add Class");
+        addClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClassActionPerformed(evt);
+            }
+        });
+
+        addGrades.setText("Add Grades");
+
         javax.swing.GroupLayout modifyLayout = new javax.swing.GroupLayout(modify);
         modify.setLayout(modifyLayout);
         modifyLayout.setHorizontalGroup(
@@ -81,7 +103,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(allStudentDisp, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                    .addComponent(allStudentDisp, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
                     .addComponent(selectStudentDisp, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyLayout.createSequentialGroup()
                         .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,6 +114,12 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addClass)
+                .addGap(125, 125, 125)
+                .addComponent(addGrades)
+                .addGap(43, 43, 43))
         );
         modifyLayout.setVerticalGroup(
             modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +131,13 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modStudent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(allStudentDisp, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addClass)
+                    .addComponent(addGrades))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -117,6 +149,11 @@ public class AdminFrame extends javax.swing.JFrame {
 
         submit.setMnemonic('b');
         submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addNewLayout = new javax.swing.GroupLayout(addNew);
         addNew.setLayout(addNewLayout);
@@ -134,7 +171,7 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(studName)
                             .addComponent(passw, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(589, Short.MAX_VALUE))
         );
         addNewLayout.setVerticalGroup(
             addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +186,7 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(submit)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         adminTabbedPane.addTab("Add New", addNew);
@@ -196,9 +233,42 @@ public class AdminFrame extends javax.swing.JFrame {
     private void modStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modStudentActionPerformed
         // TODO add your handling code here:
         int studID = Integer.parseInt(stuID.getText());
+        //send this studID to the database and return the info associated with it
+        //and put in selStudTable
         
     }//GEN-LAST:event_modStudentActionPerformed
 
+    /**
+     * this button will add the student to the database and display the generated
+     * student ID number.
+     * @param evt 
+     */
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        // TODO add your handling code here:
+        int p = newIDGen();
+        JOptionPane.showMessageDialog(null, "The student's Institution ID is: "+p);
+        //add the student to the database with sql statements here
+        
+        
+    }//GEN-LAST:event_submitActionPerformed
+
+    private void addClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_addClassActionPerformed
+
+    /**
+     * this method will pull the last id from the database, add one to it, and
+     * return the new number as the next ID number to be assigned to the new student
+     */
+    private int newIDGen(){
+        //pull the last id number from the database
+        int i = 1;
+        
+        int newID = i + 1;
+        return newID;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -235,17 +305,19 @@ public class AdminFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addClass;
+    private javax.swing.JButton addGrades;
     private javax.swing.JPanel addNew;
     private javax.swing.JTabbedPane adminTabbedPane;
     private javax.swing.JScrollPane allStudentDisp;
     private javax.swing.JTable dispAllTable;
-    private javax.swing.JTextArea dispSelected;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modStudent;
     private javax.swing.JPanel modify;
     private javax.swing.JTextField passw;
     private javax.swing.JLabel passwLabel;
+    private javax.swing.JTable selStudTable;
     private javax.swing.JScrollPane selectStudentDisp;
     private javax.swing.JTextField stuID;
     private javax.swing.JLabel stuNameLabel;
