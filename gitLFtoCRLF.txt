@@ -1,0 +1,9 @@
+to correct LF to CRLF issues when checking out and committing with git:
+
+for Windows machines:
+cd to directory where git project is located. run $ git config --global core.autocrlf true
+
+this will convert LF endings to CRLF endings when you check out the code.
+
+for Unix/Mac machines:
+cd to directory where git repo lives. run: $ git config --global core.autocrlf input
