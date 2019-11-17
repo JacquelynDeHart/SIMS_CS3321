@@ -133,18 +133,19 @@ public class mainFrame extends javax.swing.JFrame {
         //appropriate one (Student || Admin)
         if (Login.passCheck(pass.getPassword(), Integer.parseInt(instID.getText())) == true){
             //check userID for which table to pull panel from
-            if(Integer.parseInt(instID.getText()) == 1){
-                new AdminFrame().setVisible(true);
-                dispose();
-                //add(new Student()).setVisible(true);
-                //repaint();
-                
+            if(Integer.parseInt(instID.getText()) == 1){                
+                new Student(Integer.parseInt(instID.getText())).setVisible(true);
+                dispose();                               
             }
         }
         else {
             //invalidPass.setText("Invalid password entered");
-            new AdminFrame().setVisible(true);
-                dispose();
+//            new AdminFrame().setVisible(true);
+//                dispose();
+            new Student(Integer.parseInt(instID.getText())).setVisible(true);
+            dispose();
+            
+            
         }
     }//GEN-LAST:event_loginActionPerformed
 

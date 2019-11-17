@@ -48,6 +48,7 @@ public class AdminFrame extends javax.swing.JFrame {
         passw = new javax.swing.JTextField();
         submit = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        previous = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,20 +107,18 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(allStudentDisp, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
                     .addComponent(selectStudentDisp, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyLayout.createSequentialGroup()
-                        .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modifyLayout.createSequentialGroup()
+                        .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyLayout.createSequentialGroup()
                                 .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(modStudent))
-                            .addComponent(jLabel1))
+                                .addComponent(modStudent)
+                                .addGap(18, 18, 18)
+                                .addComponent(addClass)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addGrades)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addClass)
-                .addGap(125, 125, 125)
-                .addComponent(addGrades)
-                .addGap(43, 43, 43))
         );
         modifyLayout.setVerticalGroup(
             modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,15 +128,13 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modStudent))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modStudent)
                     .addComponent(addClass)
                     .addComponent(addGrades))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -199,6 +196,13 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        previous.setText("Previous");
+        previous.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,6 +213,8 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(adminTabbedPane)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(previous)
+                        .addGap(18, 18, 18)
                         .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -218,7 +224,9 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(adminTabbedPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exit)
+                    .addComponent(previous))
                 .addContainerGap())
         );
 
@@ -233,6 +241,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private void modStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modStudentActionPerformed
         // TODO add your handling code here:
         int studID = Integer.parseInt(stuID.getText());
+        stuID.setEditable(false);
         //send this studID to the database and return the info associated with it
         //and put in selStudTable
         
@@ -256,6 +265,12 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_addClassActionPerformed
+
+    private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
+        // TODO add your handling code here:
+        new mainFrame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_previousActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -317,6 +332,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel modify;
     private javax.swing.JTextField passw;
     private javax.swing.JLabel passwLabel;
+    private javax.swing.JButton previous;
     private javax.swing.JTable selStudTable;
     private javax.swing.JScrollPane selectStudentDisp;
     private javax.swing.JTextField stuID;

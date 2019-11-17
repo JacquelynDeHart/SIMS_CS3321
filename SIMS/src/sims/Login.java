@@ -1,11 +1,11 @@
-package fetch;
+package sims;
 import java.sql.*;
 import java.util.Scanner;
 
 import javax.swing.*;
 
 
-public class Login extends JPanel {
+public class Login {
 	
    private String pass;
    private int stuID;
