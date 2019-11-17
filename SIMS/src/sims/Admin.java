@@ -38,7 +38,7 @@ public class Admin extends javax.swing.JPanel {
         dispSelected = new javax.swing.JTextArea();
         addNew = new javax.swing.JPanel();
         stuNameLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        passwLabel = new javax.swing.JLabel();
         studName = new javax.swing.JTextField();
         passw = new javax.swing.JTextField();
         submitNew = new javax.swing.JButton();
@@ -95,7 +95,7 @@ public class Admin extends javax.swing.JPanel {
 
         stuNameLabel.setText("Student Name");
 
-        jLabel2.setText("Password");
+        passwLabel.setText("Password");
 
         studName.setText("Student's full name"); // NOI18N
         studName.setToolTipText("Enter the Student's full name");
@@ -119,7 +119,7 @@ public class Admin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(stuNameLabel)
-                    .addComponent(jLabel2))
+                    .addComponent(passwLabel))
                 .addGap(62, 62, 62)
                 .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +139,7 @@ public class Admin extends javax.swing.JPanel {
                     .addComponent(studName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(passwLabel)
                     .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(submitNew)
@@ -224,21 +224,21 @@ public class Admin extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addNew;
-    private javax.swing.JTextArea dispSelected;
-    private javax.swing.JButton exit;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton modStudent;
-    private javax.swing.JPanel modify;
-    private javax.swing.JTabbedPane panelSelectTab;
-    private javax.swing.JTextField passw;
-    private javax.swing.JLabel stuNameLabel;
-    private javax.swing.JTextField studID;
-    private javax.swing.JTextField studName;
-    private javax.swing.JButton submitNew;
-    private javax.swing.JPanel tab3;
+    public javax.swing.JPanel addNew;
+    public javax.swing.JTextArea dispSelected;
+    public javax.swing.JButton exit;
+    public javax.swing.JDesktopPane jDesktopPane1;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JButton modStudent;
+    public javax.swing.JPanel modify;
+    public javax.swing.JTabbedPane panelSelectTab;
+    public javax.swing.JTextField passw;
+    public javax.swing.JLabel passwLabel;
+    public javax.swing.JLabel stuNameLabel;
+    public javax.swing.JTextField studID;
+    public javax.swing.JTextField studName;
+    public javax.swing.JButton submitNew;
+    public javax.swing.JPanel tab3;
     // End of variables declaration//GEN-END:variables
 }

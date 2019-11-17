@@ -84,9 +84,9 @@ public class Student extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logout;
-    private javax.swing.JTextArea stuDispInfo;
-    private javax.swing.JTextField studentIDDisp;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton logout;
+    public javax.swing.JTextArea stuDispInfo;
+    public javax.swing.JTextField studentIDDisp;
     // End of variables declaration//GEN-END:variables
 }
