@@ -25,6 +25,7 @@ public class Student extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //add code here for populating the tables and JLabels
         StudentID.setText(Integer.toString(a));
+        
         //method call for pulling info from the student table
         dispTableInfo();
     }
@@ -38,6 +39,8 @@ public class Student extends javax.swing.JFrame {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             dispStuTable.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
         }
         catch(Exception e){
             
@@ -83,7 +86,15 @@ public class Student extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(dispStuTable);
 
         StudentID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
