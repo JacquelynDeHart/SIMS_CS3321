@@ -33,7 +33,7 @@ public class Student extends javax.swing.JFrame {
     private void dispTableInfo(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "Quandry2890");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password");
             String sql = "select * from student_info";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
