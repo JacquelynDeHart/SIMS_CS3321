@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sims;
+package fetch;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -154,12 +154,11 @@ public class Student extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
-        new mainFrame().setVisible(true);
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
     /**
