@@ -41,6 +41,7 @@ public class AdminFrame extends javax.swing.JFrame {
         dispAllTable = new javax.swing.JTable();
         addClass = new javax.swing.JButton();
         addGrades = new javax.swing.JButton();
+        dispAllLabel = new javax.swing.JLabel();
         addNew = new javax.swing.JPanel();
         stuNameLabel = new javax.swing.JLabel();
         passwLabel = new javax.swing.JLabel();
@@ -97,26 +98,29 @@ public class AdminFrame extends javax.swing.JFrame {
 
         addGrades.setText("Add Grades");
 
+        dispAllLabel.setText("Enrolled Students:");
+
         javax.swing.GroupLayout modifyLayout = new javax.swing.GroupLayout(modify);
         modify.setLayout(modifyLayout);
         modifyLayout.setHorizontalGroup(
             modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyLayout.createSequentialGroup()
+            .addGroup(modifyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(allStudentDisp, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
-                    .addComponent(selectStudentDisp, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyLayout.createSequentialGroup()
-                        .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyLayout.createSequentialGroup()
+                .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+                    .addComponent(selectStudentDisp)
+                    .addGroup(modifyLayout.createSequentialGroup()
+                        .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(modifyLayout.createSequentialGroup()
                                 .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(modStudent)
                                 .addGap(18, 18, 18)
                                 .addComponent(addClass)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addGrades)))
+                                .addComponent(addGrades))
+                            .addComponent(dispAllLabel))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -133,7 +137,9 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(addGrades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dispAllLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -183,7 +189,7 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(submit)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         adminTabbedPane.addTab("Add New", addNew);
@@ -325,6 +331,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel addNew;
     private javax.swing.JTabbedPane adminTabbedPane;
     private javax.swing.JScrollPane allStudentDisp;
+    private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;

@@ -7,6 +7,9 @@ package sims;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -23,6 +26,7 @@ public class Student extends javax.swing.JFrame {
         //add code here for populating the tables and JLabels
         StudentID.setText(Integer.toString(a));
         //method call for pulling info from the student table
+        dispTableInfo();
     }
 //Finish according to video 15 by mouna naravani...unless Julio feels so incined 
     //to be a dear and put some magic code right here....
@@ -30,7 +34,10 @@ public class Student extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "Quandry2890");
-            String sql = "select * from info";
+            String sql = "select * from student_info";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            dispStuTable.setModel(DbUtils.resultSetToTableModel(rs));
         }
         catch(Exception e){
             
@@ -48,7 +55,7 @@ public class Student extends javax.swing.JFrame {
 
         exit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dispStuTable = new javax.swing.JTable();
         StudentID = new javax.swing.JLabel();
         DisplayGPA = new javax.swing.JLabel();
         RegisteredBanner = new javax.swing.JLabel();
@@ -66,7 +73,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dispStuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +84,7 @@ public class Student extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(dispStuTable);
 
         StudentID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         StudentID.setText("Student ID");
@@ -194,8 +201,8 @@ public class Student extends javax.swing.JFrame {
     private javax.swing.JLabel RegisteredBanner;
     public static javax.swing.JLabel StudentID;
     private javax.swing.JLabel StudentName1;
+    private javax.swing.JTable dispStuTable;
     private javax.swing.JButton exit;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
