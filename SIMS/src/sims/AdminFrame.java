@@ -5,7 +5,12 @@
  */
 package sims;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -19,6 +24,7 @@ public class AdminFrame extends javax.swing.JFrame {
     public AdminFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        dispTableInfo();
     }
 
     /**
@@ -42,6 +48,7 @@ public class AdminFrame extends javax.swing.JFrame {
         addClass = new javax.swing.JButton();
         addGrades = new javax.swing.JButton();
         dispAllLabel = new javax.swing.JLabel();
+        clear = new javax.swing.JButton();
         addNew = new javax.swing.JPanel();
         stuNameLabel = new javax.swing.JLabel();
         passwLabel = new javax.swing.JLabel();
@@ -100,6 +107,13 @@ public class AdminFrame extends javax.swing.JFrame {
 
         dispAllLabel.setText("Enrolled Students:");
 
+        clear.setText("Clear");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout modifyLayout = new javax.swing.GroupLayout(modify);
         modify.setLayout(modifyLayout);
         modifyLayout.setHorizontalGroup(
@@ -112,15 +126,17 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addGroup(modifyLayout.createSequentialGroup()
                         .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
+                            .addComponent(dispAllLabel)
                             .addGroup(modifyLayout.createSequentialGroup()
                                 .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(modStudent)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(clear)
+                                .addGap(61, 61, 61)
                                 .addComponent(addClass)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addGrades))
-                            .addComponent(dispAllLabel))
+                                .addComponent(addGrades)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -134,7 +150,8 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modStudent)
                     .addComponent(addClass)
-                    .addComponent(addGrades))
+                    .addComponent(addGrades)
+                    .addComponent(clear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -239,6 +256,25 @@ public class AdminFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void dispTableInfo(){
+    	
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
+            
+            String sql = "SELECT * FROM student_info";
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            dispAllTable.setModel(DbUtils.resultSetToTableModel(rs));
+              
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -250,7 +286,21 @@ public class AdminFrame extends javax.swing.JFrame {
         stuID.setEditable(false);
         //send this studID to the database and return the info associated with it
         //and put in selStudTable
-        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
+            
+            String sql = "SELECT * FROM student_info WHERE student_id = " + studID;
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            selStudTable.setModel(DbUtils.resultSetToTableModel(rs));
+              
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
         
     }//GEN-LAST:event_modStudentActionPerformed
 
@@ -278,6 +328,12 @@ public class AdminFrame extends javax.swing.JFrame {
         new mainFrame().setVisible(true);
         dispose();
     }//GEN-LAST:event_previousActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+        stuID.setText("");
+        stuID.setEditable(true);
+    }//GEN-LAST:event_clearActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -332,6 +388,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel addNew;
     private javax.swing.JTabbedPane adminTabbedPane;
     private javax.swing.JScrollPane allStudentDisp;
+    private javax.swing.JButton clear;
     private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
     private javax.swing.JButton exit;

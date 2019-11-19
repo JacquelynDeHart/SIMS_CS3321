@@ -32,7 +32,7 @@ public class Student extends javax.swing.JFrame {
         getStudentName(id);
     }
 
-    private void dispTableInfo(int id){
+    public void dispTableInfo(int id){
     	
         try{
             Class.forName("com.mysql.jdbc.Driver");

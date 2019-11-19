@@ -139,13 +139,9 @@ public class mainFrame extends javax.swing.JFrame {
             
         }
         else {
-            invalidPass.setText("Invalid password entered");
-//            new AdminFrame().setVisible(true);
-//                dispose();
-//            new Student(Integer.parseInt(instID.getText())).setVisible(true);
-//            dispose();
-//            
-            
+            //invalidPass.setText("Invalid password entered");
+            new AdminFrame().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_loginActionPerformed
 

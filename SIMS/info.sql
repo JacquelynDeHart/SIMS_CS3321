@@ -21,9 +21,23 @@ CREATE TABLE `courses` (
   `student_id`int(11) NOT NULL,
   `exam_one` int(11) NULL,
   `final_exam` int(11) NULL,
-  `gpa` decimal(4,2) NULL,
-  PRIMARY KEY (`course_id`), 
+  -- PRIMARY KEY (`course_id`), 
   FOREIGN KEY (`student_id`) REFERENCES `student_info` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-INSERT INTO `courses` VALUES (1,'Operating Systems',1, NULL,NULL,NULL);
+INSERT INTO `courses` VALUES (4315,'Operating Systems',1, 77,80);
+INSERT INTO `courses` VALUES (2302,'Digital Logic',1,100,100);
+INSERT INTO `courses` VALUES (3308,'Numerical Methods',1, 80,90);
+INSERT INTO `courses` VALUES (3321,'Software Engineering',2, 100,50);
+INSERT INTO `courses` VALUES (3326,'Network Security',2, 25,50);
+INSERT INTO `courses` VALUES (4328,'Parallel Computing',2,10,30);
+INSERT INTO `courses` VALUES (3326,'Network Security',3, 30,60);
+INSERT INTO `courses` VALUES (4315,'Operating Systems',3, 90,65);
+INSERT INTO `courses` VALUES (2302,'Digital Logic',3, 100,96);
+INSERT INTO `courses` VALUES (3326,'Network Security',4, 100,100);
+INSERT INTO `courses` VALUES (2302,'Digital Logic',4, 98,87);
+INSERT INTO `courses` VALUES (3308,'Numerical Methods',4, 100,89);
 
+-- For GPA calculation 
+-- SELECT student_id, (SUM(exam_one + final_exam)/6) as GPA
+-- FROM courses
+-- WHERE student_id = 1
