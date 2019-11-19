@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This frame 
  */
 package sims;
 
@@ -49,6 +47,10 @@ public class AdminFrame extends javax.swing.JFrame {
         addGrades = new javax.swing.JButton();
         dispAllLabel = new javax.swing.JLabel();
         clear = new javax.swing.JButton();
+        allCourseDisp = new javax.swing.JScrollPane();
+        dispCourseTable = new javax.swing.JTable();
+        courseLabel = new javax.swing.JLabel();
+        courseList = new javax.swing.JComboBox<>();
         addNew = new javax.swing.JPanel();
         stuNameLabel = new javax.swing.JLabel();
         passwLabel = new javax.swing.JLabel();
@@ -104,6 +106,11 @@ public class AdminFrame extends javax.swing.JFrame {
         });
 
         addGrades.setText("Add Grades");
+        addGrades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGradesActionPerformed(evt);
+            }
+        });
 
         dispAllLabel.setText("Enrolled Students:");
 
@@ -114,6 +121,23 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        dispCourseTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        allCourseDisp.setViewportView(dispCourseTable);
+
+        courseLabel.setText("Active Courses");
+
+        courseList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout modifyLayout = new javax.swing.GroupLayout(modify);
         modify.setLayout(modifyLayout);
         modifyLayout.setHorizontalGroup(
@@ -123,10 +147,12 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
                     .addComponent(selectStudentDisp)
+                    .addComponent(allCourseDisp)
                     .addGroup(modifyLayout.createSequentialGroup()
                         .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(dispAllLabel)
+                            .addComponent(courseLabel)
                             .addGroup(modifyLayout.createSequentialGroup()
                                 .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -136,7 +162,9 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addGap(61, 61, 61)
                                 .addComponent(addClass)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addGrades)))
+                                .addComponent(addGrades)
+                                .addGap(76, 76, 76)
+                                .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -151,13 +179,18 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(modStudent)
                     .addComponent(addClass)
                     .addComponent(addGrades)
-                    .addComponent(clear))
+                    .addComponent(clear)
+                    .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(courseLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(allCourseDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(dispAllLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dispAllLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(allStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -320,6 +353,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void addClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassActionPerformed
         // TODO add your handling code here:
+        //pull from stuID and new JLabel and pass to Update.java
         
     }//GEN-LAST:event_addClassActionPerformed
 
@@ -334,6 +368,10 @@ public class AdminFrame extends javax.swing.JFrame {
         stuID.setText("");
         stuID.setEditable(true);
     }//GEN-LAST:event_clearActionPerformed
+
+    private void addGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGradesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addGradesActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -387,10 +425,14 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton addGrades;
     private javax.swing.JPanel addNew;
     private javax.swing.JTabbedPane adminTabbedPane;
+    private javax.swing.JScrollPane allCourseDisp;
     private javax.swing.JScrollPane allStudentDisp;
     private javax.swing.JButton clear;
+    private javax.swing.JLabel courseLabel;
+    private javax.swing.JComboBox<String> courseList;
     private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
+    private javax.swing.JTable dispCourseTable;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modStudent;

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -28,8 +29,31 @@ public class Student extends javax.swing.JFrame {
         StudentID.setText(Integer.toString(a));
         // StudentName1.setText(text);
         //method call for pulling info from the student table
+              // ****************************************************************
+        Connection conn = null;
+        Statement stmt = null;
+        String fullName = null;
+        try{
+           conn = Db.java_db();
+           stmt = conn.createStatement();
+           
+           String sql = "SELECT first_name, last_name FROM student_info WHERE student_id = " + id;
+           ResultSet rs = stmt.executeQuery(sql);
+   
+              //Retrieve by column name
+           while(rs.next()) {
+        	   String firstN = rs.getString("first_name");
+               String lastN = rs.getString("last_name");
+               fullName = firstN +" " +lastN;
+           }
+           rs.close();
+        } catch (Exception e){
+            System.out.println(e);
+        	}
+        //*****************************************************************
+         StudentName1.setText(fullName);
+        
         dispTableInfo(id);
-        getStudentName(id);
     }
 
     public void dispTableInfo(int id){
@@ -50,24 +74,7 @@ public class Student extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
-    private void getStudentName(int id){
-        String name;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
-            
-            String sql = "SELECT first_name FROM student_info WHERE student_id = " + id;
-            
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-
+      
     private void initComponents() {
 
         exit = new javax.swing.JButton();
