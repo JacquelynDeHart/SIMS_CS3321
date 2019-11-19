@@ -251,6 +251,7 @@ public class AdminFrame extends javax.swing.JFrame {
         //send this studID to the database and return the info associated with it
         //and put in selStudTable
         
+        
     }//GEN-LAST:event_modStudentActionPerformed
 
     /**

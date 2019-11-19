@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This frame shows the results of the values in the database table for the
+ * studentID that was passed from mainFrame().
  */
 package sims;
 
@@ -9,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -29,14 +29,14 @@ public class Student extends javax.swing.JFrame {
         // StudentName1.setText(text);
         //method call for pulling info from the student table
         dispTableInfo(id);
+        getStudentName(id);
     }
-//Finish according to video 15 by mouna naravani...unless Julio feels so incined 
-    //to be a dear and put some magic code right here....
+
     private void dispTableInfo(int id){
     	
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "vermilion171190");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
             
             String sql = "SELECT * FROM student_info WHERE student_id = " + id;
             
@@ -48,6 +48,22 @@ public class Student extends javax.swing.JFrame {
         }
         catch(Exception e){
             System.out.println(e);
+        }
+    }
+    
+    private void getStudentName(int id){
+        String name;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
+            
+            String sql = "SELECT first_name FROM student_info WHERE student_id = " + id;
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     
