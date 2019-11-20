@@ -24,6 +24,10 @@ public class AdminFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         dispTableInfo();
+        getRootPane().setDefaultButton(modStudent);
+        String[] chooseCourse = {"4315 Operating Systems","2302 Digital Logic",
+                "3308 Numerical Methods","3321 Software Engineering","3326 Network Security",
+        "4328 Parallel Computing"};
     }
 
     /**
@@ -62,9 +66,18 @@ public class AdminFrame extends javax.swing.JFrame {
         previous = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrator View - SIMS");
+        setBackground(new java.awt.Color(165, 191, 217));
 
+        adminTabbedPane.setBackground(new java.awt.Color(165, 191, 217));
+        adminTabbedPane.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+
+        stuID.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel1.setText("Enter Student ID: ");
 
+        modStudent.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         modStudent.setMnemonic('s');
         modStudent.setText("Select");
         modStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +112,7 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         allStudentDisp.setViewportView(dispAllTable);
 
+        addClass.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         addClass.setText("Add Class");
         addClass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +120,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        addGrades.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         addGrades.setText("Add Grades");
         addGrades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,8 +128,10 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        dispAllLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         dispAllLabel.setText("Enrolled Students:");
 
+        clear.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         clear.setText("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,9 +152,12 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         allCourseDisp.setViewportView(dispCourseTable);
 
+        courseLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         courseLabel.setText("Active Courses");
 
-        courseList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        courseList.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        courseList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4315 Operating Systems", "2302 Digital Logic", "3308 Numerical Methods", "3321 Software Engineering", "3326 Network Security", "4328 Parallel Computing" }));
+        courseList.setToolTipText("Select a Course to Add...");
 
         javax.swing.GroupLayout modifyLayout = new javax.swing.GroupLayout(modify);
         modify.setLayout(modifyLayout);
@@ -146,7 +166,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(modifyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
+                    .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(selectStudentDisp)
                     .addComponent(allCourseDisp)
                     .addGroup(modifyLayout.createSequentialGroup()
@@ -160,12 +180,12 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addComponent(modStudent)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(clear)
-                                .addGap(61, 61, 61)
+                                .addGap(314, 314, 314)
+                                .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
                                 .addComponent(addClass)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addGrades)
-                                .addGap(76, 76, 76)
-                                .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(addGrades)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -184,7 +204,7 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(courseLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(allCourseDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +245,7 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(studName)
                             .addComponent(passw, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
-                .addContainerGap(589, Short.MAX_VALUE))
+                .addContainerGap(690, Short.MAX_VALUE))
         );
         addNewLayout.setVerticalGroup(
             addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,11 +260,12 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(submit)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
 
         adminTabbedPane.addTab("Add New", addNew);
 
+        exit.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         exit.setMnemonic('x');
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +274,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        previous.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         previous.setText("Previous");
         previous.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,9 +315,7 @@ public class AdminFrame extends javax.swing.JFrame {
     public void dispTableInfo(){
     	
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
-            
+            Connection conn = Db.java_db();
             String sql = "SELECT * FROM student_info";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -321,14 +341,25 @@ public class AdminFrame extends javax.swing.JFrame {
         //send this studID to the database and return the info associated with it
         //and put in selStudTable
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
-            
+            Connection conn = Db.java_db();
             String sql = "SELECT * FROM student_info WHERE student_id = " + studID;
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             selStudTable.setModel(DbUtils.resultSetToTableModel(rs));
+              
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        try{           
+            Connection conn = Db.java_db();
+            String sql = "SELECT * FROM courses WHERE student_id = " + studID;
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            dispCourseTable.setModel(DbUtils.resultSetToTableModel(rs));
               
             
         }

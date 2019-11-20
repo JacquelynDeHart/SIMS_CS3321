@@ -18,6 +18,7 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(login);
     }
 
     /**
@@ -40,11 +41,16 @@ public class mainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Information Management System");
+        setBackground(new java.awt.Color(165, 191, 217));
+
+        mainLoginPanel.setBackground(new java.awt.Color(165, 191, 217));
 
         iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sims/uhd_gatorbust.jpg"))); // NOI18N
 
+        instIDLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         instIDLabel.setText("Institution ID");
 
+        passwordLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         passwordLabel.setText("Password");
 
         login.setMnemonic('l');
@@ -64,11 +70,9 @@ public class mainFrame extends javax.swing.JFrame {
         mainLoginPanelLayout.setHorizontalGroup(
             mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainLoginPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(163, 163, 163)
                         .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(instIDLabel)
                             .addComponent(passwordLabel))
@@ -76,20 +80,23 @@ public class mainFrame extends javax.swing.JFrame {
                         .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(instID)
                             .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 24, Short.MAX_VALUE)
                                 .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(30, 30, 30)
                         .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(login)
-                            .addComponent(invalidPass, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainLoginPanelLayout.createSequentialGroup()
+                                .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(invalidPass, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
         mainLoginPanelLayout.setVerticalGroup(
             mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainLoginPanelLayout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainLoginPanelLayout.createSequentialGroup()
@@ -111,17 +118,11 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainLoginPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -135,7 +136,7 @@ public class mainFrame extends javax.swing.JFrame {
             //check userID for which table to pull panel from
                           
             new Student(Integer.parseInt(instID.getText())).setVisible(true);
-            dispose();                               
+            dispose();
             
         }
         else {
