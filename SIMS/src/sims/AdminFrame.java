@@ -1,5 +1,6 @@
 /**
- * This frame 
+ * This frame displays the actions that an administrator can perform on a student
+ * 
  */
 package sims;
 

@@ -62,7 +62,7 @@ public class Student extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "password"); //vermilion171190
             
-            String sql = "SELECT * FROM student_info WHERE student_id = " + id;
+            String sql = "SELECT * FROM courses WHERE student_id = " + id;
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
@@ -120,7 +120,7 @@ public class Student extends javax.swing.JFrame {
         RegisteredBanner.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         RegisteredBanner.setText("Registered Courses");
 
-       // GatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sims/uhd_gatorbust.jpg"))); // NOI18N
+        GatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sims/uhd_gatorbust.jpg"))); // NOI18N
 
         StudentName1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         StudentName1.setText("Student Name");
