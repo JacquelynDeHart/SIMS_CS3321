@@ -320,8 +320,7 @@ public class AdminFrame extends javax.swing.JFrame {
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            dispAllTable.setModel(DbUtils.resultSetToTableModel(rs));
-              
+            dispAllTable.setModel(DbUtils.resultSetToTableModel(rs));             
             
         }
         catch(Exception e){
@@ -383,10 +382,26 @@ public class AdminFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_submitActionPerformed
 
+    /**
+     * This method will pull the values from the stuID JLabel and the selected value
+     * from the courseList JComboBox, change them to integer values and pass them 
+     * to the addClass method in the Login class.
+     * @param evt the button click that initiates the action.
+     */
     private void addClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassActionPerformed
         // TODO add your handling code here:
         //pull from stuID and new JLabel and pass to Update.java
-        
+        int idNum = Integer.parseInt(stuID.getText());
+        int courseID; String p;
+        String x = String.valueOf(courseList.getSelectedItem());
+        if(x.length()>4){
+            p = x.substring(0,4);
+        }else{
+            p =x;
+        }
+        courseID = Integer.parseInt(p);
+        System.out.println(idNum+"\t"+ courseID);
+        Login.addClass(idNum, courseID);
     }//GEN-LAST:event_addClassActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
@@ -407,11 +422,11 @@ public class AdminFrame extends javax.swing.JFrame {
 
     /**
      * this method will pull the last id from the database, add one to it, and
-     * return the new number as the next ID number to be assigned to the new student
+     * return the new number as the next ID number to be assigned to the new student.
      */
     private int newIDGen(){
         //pull the last id number from the database
-        int i = 1;
+        int i = 4;
         
         int newID = i + 1;
         return newID;

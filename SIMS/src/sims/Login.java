@@ -59,21 +59,18 @@ public class Login {
              String password = rs.getString("password");
       
                  
-         if  ((student_id == id) & (password.equals(passString))) {
-        	 
-        	 JOptionPane.showMessageDialog(null, "Succes! Your student id and password are valid");
-        	 flag = true; 
-        	//call database and pull associated userID password to validate.
-             //test it here... change flag appropriately 
-             
-         	} else {
+         if  ((student_id == id) & (password.equals(passString))) {        	 
+        	 //JOptionPane.showMessageDialog(null, "Succes! Your student id and password are valid");
+        	 flag = true;             
+            } 
+         else {
          		JOptionPane.showMessageDialog(null, "Invalid id or password");
-         }
+            }
         
          } // WHILE LOOP
           
           rs.close();
-       } catch (Exception e){
+        } catch (Exception e){
            //JOptionPane.showMessageDialog(null, "Could not connect to database");
     	   JOptionPane.showMessageDialog(null, "Invalid id or password");
        	}
@@ -84,11 +81,21 @@ public class Login {
    }
    
    /**
-    * add a class method
+    * This method will take parameters passed to it for the student ID and the course ID
+    * and add the course to the database and associate it with the student's record.
+    * @param s  the student ID 
+    * @param c  the course number
     */
-   public void addClass(){
-       //make JComboBox here with courses to select from. Consider using an ArrayList
-       //or a LinkedList for the courses
+   public static void addClass(int s, int c){
+       try{
+           Connection conn = Db.java_db();
+           Statement stmt = conn.createStatement();
+           
+           
+       }catch(Exception e){
+           System.out.println(e);
+       }
+       
    }
    
    /**
