@@ -8,15 +8,13 @@ import javax.swing.*;
 public class Login {
 	
    private String pass;
-   private int stuID;
-   private JPanel display;
-   
+   private int stuID; 
    
  
    public Login(String a, int ID) {
        pass = a;
        stuID = ID;
-       display = new JPanel(); 
+      
        
    }
    
@@ -117,10 +115,10 @@ public class Login {
    }
    
    /**
-    * view grades for all courses enrolled
+    * add grades to enrolled courses.
     */
-   public void viewGrades(){
-       //maybe consider combining this method with above
+   public void addGrades(){
+       
    }
    
    /**

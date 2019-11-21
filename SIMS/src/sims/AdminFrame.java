@@ -49,7 +49,6 @@ public class AdminFrame extends javax.swing.JFrame {
         allStudentDisp = new javax.swing.JScrollPane();
         dispAllTable = new javax.swing.JTable();
         addClass = new javax.swing.JButton();
-        addGrades = new javax.swing.JButton();
         dispAllLabel = new javax.swing.JLabel();
         clear = new javax.swing.JButton();
         allCourseDisp = new javax.swing.JScrollPane();
@@ -62,6 +61,17 @@ public class AdminFrame extends javax.swing.JFrame {
         studName = new javax.swing.JTextField();
         passw = new javax.swing.JTextField();
         submit = new javax.swing.JButton();
+        addGradesPanel = new javax.swing.JPanel();
+        studentLabel = new javax.swing.JLabel();
+        courseSelectLabel = new javax.swing.JLabel();
+        examLabel = new javax.swing.JLabel();
+        gradeLabel = new javax.swing.JLabel();
+        gradeEntered = new javax.swing.JTextField();
+        studentSelection = new javax.swing.JComboBox<>();
+        courseSelection = new javax.swing.JComboBox<>();
+        assignmentSelection = new javax.swing.JComboBox<>();
+        changeGrade = new javax.swing.JButton();
+        clearSelections = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         previous = new javax.swing.JButton();
 
@@ -120,14 +130,6 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
-        addGrades.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        addGrades.setText("Add Grades");
-        addGrades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addGradesActionPerformed(evt);
-            }
-        });
-
         dispAllLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         dispAllLabel.setText("Enrolled Students:");
 
@@ -166,7 +168,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(modifyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(modifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(allStudentDisp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
                     .addComponent(selectStudentDisp)
                     .addComponent(allCourseDisp)
                     .addGroup(modifyLayout.createSequentialGroup()
@@ -180,13 +182,10 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addComponent(modStudent)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(clear)
-                                .addGap(314, 314, 314)
-                                .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(addClass)
-                                .addGap(18, 18, 18)
-                                .addComponent(addGrades)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(addClass, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         modifyLayout.setVerticalGroup(
@@ -199,7 +198,6 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(stuID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modStudent)
                     .addComponent(addClass)
-                    .addComponent(addGrades)
                     .addComponent(clear)
                     .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -264,6 +262,91 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         adminTabbedPane.addTab("Add New", addNew);
+
+        studentLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        studentLabel.setText("Select Student: ");
+
+        courseSelectLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        courseSelectLabel.setText("Select Course: ");
+
+        examLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        examLabel.setText("Choose Assignment:");
+
+        gradeLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        gradeLabel.setText("Enter Grade:");
+
+        studentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "1", "2", "3", "4" }));
+
+        courseSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        assignmentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "exam_one", "final_exam" }));
+
+        changeGrade.setMnemonic('g');
+        changeGrade.setText("Submit Grade");
+        changeGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeGradeActionPerformed(evt);
+            }
+        });
+
+        clearSelections.setText("Clear");
+        clearSelections.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSelectionsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addGradesPanelLayout = new javax.swing.GroupLayout(addGradesPanel);
+        addGradesPanel.setLayout(addGradesPanelLayout);
+        addGradesPanelLayout.setHorizontalGroup(
+            addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addGradesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(examLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(courseSelectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGradesPanelLayout.createSequentialGroup()
+                        .addComponent(changeGrade)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearSelections, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(assignmentSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gradeEntered))
+                    .addComponent(courseSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(534, Short.MAX_VALUE))
+        );
+        addGradesPanelLayout.setVerticalGroup(
+            addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addGradesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseSelectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(examLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignmentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gradeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gradeEntered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(changeGrade)
+                    .addComponent(clearSelections))
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+
+        adminTabbedPane.addTab("Add Grades", addGradesPanel);
 
         exit.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         exit.setMnemonic('x');
@@ -416,9 +499,19 @@ public class AdminFrame extends javax.swing.JFrame {
         stuID.setEditable(true);
     }//GEN-LAST:event_clearActionPerformed
 
-    private void addGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGradesActionPerformed
+    private void changeGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeGradeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addGradesActionPerformed
+        //collect the values from the combo boxes and send them to Login class
+        //addGrades method.
+    }//GEN-LAST:event_changeGradeActionPerformed
+
+    private void clearSelectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSelectionsActionPerformed
+        // TODO add your handling code here:
+        //set studentSelection to null          these three are JComboBoxes...
+        //clear courseSelection somehow
+        //set assignmentSelection to null
+        gradeEntered.setText("");
+    }//GEN-LAST:event_clearSelectionsActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -469,18 +562,26 @@ public class AdminFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addClass;
-    private javax.swing.JButton addGrades;
+    private javax.swing.JPanel addGradesPanel;
     private javax.swing.JPanel addNew;
     private javax.swing.JTabbedPane adminTabbedPane;
     private javax.swing.JScrollPane allCourseDisp;
     private javax.swing.JScrollPane allStudentDisp;
+    private javax.swing.JComboBox<String> assignmentSelection;
+    private javax.swing.JButton changeGrade;
     private javax.swing.JButton clear;
+    private javax.swing.JButton clearSelections;
     private javax.swing.JLabel courseLabel;
     private javax.swing.JComboBox<String> courseList;
+    private javax.swing.JLabel courseSelectLabel;
+    private javax.swing.JComboBox<String> courseSelection;
     private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
     private javax.swing.JTable dispCourseTable;
+    private javax.swing.JLabel examLabel;
     private javax.swing.JButton exit;
+    private javax.swing.JTextField gradeEntered;
+    private javax.swing.JLabel gradeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modStudent;
     private javax.swing.JPanel modify;
@@ -492,6 +593,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JTextField stuID;
     private javax.swing.JLabel stuNameLabel;
     private javax.swing.JTextField studName;
+    private javax.swing.JLabel studentLabel;
+    private javax.swing.JComboBox<String> studentSelection;
     private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
 }
