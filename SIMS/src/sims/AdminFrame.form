@@ -123,7 +123,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="selectStudentDisp" min="-2" pref="53" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                       <Component id="courseLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="allCourseDisp" min="-2" pref="114" max="-2" attributes="0"/>
@@ -326,7 +326,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="submit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="303" max="32767" attributes="0"/>
+                      <EmptySpace pref="307" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -423,7 +423,7 @@
                           <Component id="changeGrade" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="clearSelections" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="189" max="32767" attributes="0"/>
+                      <EmptySpace pref="193" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
