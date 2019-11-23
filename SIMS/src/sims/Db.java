@@ -1,3 +1,7 @@
+/**
+ * This class is used to make connections to the database where all the student 
+ * information is stored. It is called from mainFrame, AdminFrame, and Student.
+ */
 package sims;
 
 //Import required packages

@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class is passed a value from the mainFrame and uses this value to 
+ * pull and display information from the connected database. When a user is 
+ * done viewing this page, they may click the button to return to the mainFrame.
  */
 package sims;
 

@@ -1,3 +1,8 @@
+/**
+ * This class holds the methods for performing password validation, 
+ * GPA calculation, adding, and deleting courses. It is called from 
+ * mainFrame and AdminFrame.
+ */
 package sims;
 import java.sql.*;
 import java.util.Scanner;

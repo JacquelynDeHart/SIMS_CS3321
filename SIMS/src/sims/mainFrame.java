@@ -1,9 +1,10 @@
 package sims;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class holds the main method of the program and displays a frame that 
+ * allows a user to input an Institution ID and their password.
+ * This class accesses the Db class and sends data to the Student 
+ * and AdminFrame classes.
  */
 
 /**

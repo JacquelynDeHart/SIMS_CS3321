@@ -1,9 +1,14 @@
 /**
- * This frame displays the actions that an administrator can perform on a student
+ * This class displays a frame from which an admin user can view all students 
+ * enrolled, select a student to modify, add courses to selected student, 
+ * delete courses for selected student, and add grades to the courses. 
+ * This class is called from mainFrame accesses Db and Login, and makes changes 
+ * to the values in the connected database.
  * 
  */
 package sims;
 
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -79,7 +84,6 @@ public class AdminFrame extends javax.swing.JFrame {
         setTitle("Administrator View - SIMS");
         setBackground(new java.awt.Color(165, 191, 217));
 
-        adminTabbedPane.setBackground(new java.awt.Color(165, 191, 217));
         adminTabbedPane.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
 
         stuID.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
