@@ -21,6 +21,7 @@ CREATE TABLE `courses` (
   `student_id`int(11) NOT NULL,
   `exam_one` int(11) NULL,
   `final_exam` int(11) NULL,
+<<<<<<< HEAD
   -- PRIMARY KEY (`course_id`), 
   FOREIGN KEY (`student_id`) REFERENCES `student_info` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -41,3 +42,11 @@ INSERT INTO `courses` VALUES (3308,'Numerical Methods',4, 100,89);
 -- SELECT student_id, (SUM(exam_one + final_exam)/6) as GPA
 -- FROM courses
 -- WHERE student_id = 1
+=======
+  `gpa` decimal(4,2) NULL,
+  PRIMARY KEY (`course_id`), 
+  FOREIGN KEY (`student_id`) REFERENCES `student_info` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `courses` VALUES (1,'Operating Systems',1, NULL,NULL,NULL);
+
+>>>>>>> origin/master
