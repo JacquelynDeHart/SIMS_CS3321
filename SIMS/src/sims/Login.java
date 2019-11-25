@@ -110,10 +110,20 @@ public class Login {
    }
    
    /**
-    * add grades to enrolled courses.
+    * this method will accept passed values and add/change grades in the database
+    * for the selected student based on the course and assignment.
+    * @param sdi    the value for the student_id
+    * @param cID    the value for the course_id
+    * @param asgn   the String containing either exam_one or final_exam exactly
+    * @param gr     the value of the grade to be added or changed.
     */
-   public void addGrades(){
-       
+   public static void addGrades(int sdi, int cID, String asgn, int gr){
+       int studentID = sdi;
+       int courseID = cID;
+       String asmt = asgn;
+       int grade = gr;
+       //Connection conn = Db.java_db();
+       System.out.println("sdi:"+studentID+"\t cID:"+courseID+"\t asgn:"+asmt+"\t gr:"+grade);
    }
    
    /**

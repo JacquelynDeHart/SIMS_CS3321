@@ -77,6 +77,7 @@ public class AdminFrame extends javax.swing.JFrame {
         assignmentSelection = new javax.swing.JComboBox<>();
         changeGrade = new javax.swing.JButton();
         clearSelections = new javax.swing.JButton();
+        warning = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
         previous = new javax.swing.JButton();
 
@@ -305,6 +306,9 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        warning.setForeground(new java.awt.Color(228, 72, 72));
+        warning.setText("Integer values only");
+
         javax.swing.GroupLayout addGradesPanelLayout = new javax.swing.GroupLayout(addGradesPanel);
         addGradesPanel.setLayout(addGradesPanelLayout);
         addGradesPanelLayout.setHorizontalGroup(
@@ -317,15 +321,18 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(courseSelectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(studentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
-                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addGradesPanelLayout.createSequentialGroup()
                         .addComponent(changeGrade)
                         .addGap(18, 18, 18)
                         .addComponent(clearSelections, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(assignmentSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gradeEntered))
+                    .addGroup(addGradesPanelLayout.createSequentialGroup()
+                        .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(assignmentSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gradeEntered))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(warning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(courseSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(534, Short.MAX_VALUE))
         );
@@ -347,7 +354,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gradeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gradeEntered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gradeEntered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(warning))
                 .addGap(28, 28, 28)
                 .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeGrade)
@@ -492,7 +500,7 @@ public class AdminFrame extends javax.swing.JFrame {
             p =x;
         }
         courseID = Integer.parseInt(p);
-        System.out.println(idNum+"\t"+ courseID);
+        System.out.println(idNum+"\t"+ courseID);   //tests values to be passed in following method
         Login.addClass(idNum, courseID);
     }//GEN-LAST:event_addClassActionPerformed
 
@@ -502,6 +510,10 @@ public class AdminFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_previousActionPerformed
 
+    /**
+     * This action listener is for the clear button on the Modify tab.
+     * @param evt 
+     */
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         // TODO add your handling code here:
         stuID.setText("");
@@ -510,8 +522,22 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void changeGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeGradeActionPerformed
         // TODO add your handling code here:
-        //collect the values from the combo boxes and send them to Login class
-        //addGrades method.
+        //collect course_id from combobox
+        int courseID; String p;
+        String x = String.valueOf(courseSelection.getSelectedItem());
+        if(x.length()>4){
+            p = x.substring(0,4);
+        }else{
+            p =x;
+        }
+        courseID = Integer.parseInt(p);
+        //collects the student_id from combobox
+        int sdi = Integer.parseInt(String.valueOf(studentSelection.getSelectedItem()));
+        //collect the selected assignment to add the grade to
+        String asgn = String.valueOf(assignmentSelection.getSelectedItem());
+        //collect grade to add
+        int grade = Integer.parseInt(gradeEntered.getText());
+        Login.addGrades(sdi, courseID, asgn, grade);
     }//GEN-LAST:event_changeGradeActionPerformed
 
     /**
@@ -538,17 +564,20 @@ public class AdminFrame extends javax.swing.JFrame {
     }
     
     /**
-     * this method clears the selections for the comboBoxes and text fields.
+     * this method clears the selections for the comboBoxes and text fields on
+     * the Add Grades tab.
      * @param evt button click
      */
     
     private void clearSelectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSelectionsActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:WIDTH
         //set studentSelection to null          these three are JComboBoxes...
         //clear courseSelection somehow
         //set assignmentSelection to null
         gradeEntered.setText("");
-        
+        studentSelection.setSelectedIndex(0);
+        courseSelection.removeAllItems();
+        assignmentSelection.setSelectedIndex(0);
     }//GEN-LAST:event_clearSelectionsActionPerformed
 
     private void studentSelectionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_studentSelectionItemStateChanged
@@ -640,5 +669,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel studentLabel;
     private javax.swing.JComboBox<String> studentSelection;
     private javax.swing.JButton submit;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }

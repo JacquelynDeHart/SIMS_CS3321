@@ -378,16 +378,20 @@
                           <Component id="studentLabel" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="changeGrade" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="clearSelections" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="studentSelection" min="-2" max="-2" attributes="0"/>
-                              <Component id="assignmentSelection" max="32767" attributes="0"/>
-                              <Component id="gradeEntered" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="studentSelection" min="-2" max="-2" attributes="0"/>
+                                  <Component id="assignmentSelection" max="32767" attributes="0"/>
+                                  <Component id="gradeEntered" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="warning" max="32767" attributes="0"/>
                           </Group>
                           <Component id="courseSelection" min="-2" pref="288" max="-2" attributes="0"/>
                       </Group>
@@ -417,6 +421,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="gradeLabel" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="gradeEntered" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="warning" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -527,6 +532,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearSelectionsActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="warning">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="48" green="48" red="e4" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Integer values only"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
