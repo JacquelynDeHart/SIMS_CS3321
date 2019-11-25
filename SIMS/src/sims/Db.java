@@ -1,8 +1,10 @@
-package fetch;
+/**
+ * This class is used to make connections to the database where all the student 
+ * information is stored. It is called from mainFrame, AdminFrame, and Student.
+ */
+package sims;
 
 //Import required packages
-import java.sql.*;
-
 import java.sql.*;
 import javax.swing.*;
 
@@ -14,7 +16,7 @@ public class Db {
 
    //  Database credentials
    static final String USER = "root";
-   static final String PASS = "vermilion171190";
+   static final String PASS = "password";       //vermilion171190
    
    
    public static Connection java_db(){
@@ -36,7 +38,7 @@ public class Db {
              
         } catch (Exception e){
             //JOptionPane.showMessageDialog(null, "Could not connect to database");
-            System.out.println("Could not connect to database");
+            System.out.println(e);
             
             return null;
         }

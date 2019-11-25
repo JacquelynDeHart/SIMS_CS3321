@@ -1,9 +1,10 @@
 package sims;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class holds the main method of the program and displays a frame that 
+ * allows a user to input an Institution ID and their password.
+ * This class accesses the Db class and sends data to the Student 
+ * and AdminFrame classes.
  */
 
 /**
@@ -18,6 +19,7 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(login);
     }
 
     /**
@@ -37,14 +39,20 @@ public class mainFrame extends javax.swing.JFrame {
         login = new javax.swing.JButton();
         pass = new javax.swing.JPasswordField();
         invalidPass = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Information Management System");
+        setBackground(new java.awt.Color(165, 191, 217));
+
+        mainLoginPanel.setBackground(new java.awt.Color(165, 191, 217));
 
         iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sims/uhd_gatorbust.jpg"))); // NOI18N
 
+        instIDLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         instIDLabel.setText("Institution ID");
 
+        passwordLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         passwordLabel.setText("Password");
 
         login.setMnemonic('l');
@@ -59,37 +67,47 @@ public class mainFrame extends javax.swing.JFrame {
         invalidPass.setForeground(new java.awt.Color(231, 20, 20));
         invalidPass.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
 
+        exit.setMnemonic('x');
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainLoginPanelLayout = new javax.swing.GroupLayout(mainLoginPanel);
         mainLoginPanel.setLayout(mainLoginPanelLayout);
         mainLoginPanelLayout.setHorizontalGroup(
             mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainLoginPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163)
+                .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(instIDLabel)
+                    .addComponent(passwordLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(instIDLabel)
-                            .addComponent(passwordLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(instID)
-                            .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(mainLoginPanelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(login)
-                            .addComponent(invalidPass, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(instID)
+                    .addComponent(pass))
                 .addGap(21, 21, 21))
+            .addGroup(mainLoginPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(mainLoginPanelLayout.createSequentialGroup()
+                        .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(invalidPass, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 82, Short.MAX_VALUE))
+                    .addGroup(mainLoginPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         mainLoginPanelLayout.setVerticalGroup(
             mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainLoginPanelLayout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addContainerGap(85, Short.MAX_VALUE)
                 .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(iconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainLoginPanelLayout.createSequentialGroup()
@@ -103,7 +121,9 @@ public class mainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(invalidPass, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
-                .addComponent(login)
+                .addGroup(mainLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(login)
+                    .addComponent(exit))
                 .addContainerGap())
         );
 
@@ -111,17 +131,11 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainLoginPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainLoginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -133,20 +147,22 @@ public class mainFrame extends javax.swing.JFrame {
         //appropriate one (Student || Admin)
         if (Login.passCheck(pass.getPassword(), Integer.parseInt(instID.getText())) == true){
             //check userID for which table to pull panel from
-            if(Integer.parseInt(instID.getText()) == 1){
-                new AdminFrame().setVisible(true);
-                dispose();
-                //add(new Student()).setVisible(true);
-                //repaint();
-                
-            }
+                          
+            new Student(Integer.parseInt(instID.getText())).setVisible(true);
+            dispose();
+            
         }
         else {
             //invalidPass.setText("Invalid password entered");
             new AdminFrame().setVisible(true);
-                dispose();
+            dispose();
         }
     }//GEN-LAST:event_loginActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +200,7 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exit;
     private javax.swing.JLabel iconLabel;
     private javax.swing.JTextField instID;
     private javax.swing.JLabel instIDLabel;

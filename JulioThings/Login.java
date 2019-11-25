@@ -35,8 +35,6 @@ public class Login extends JPanel {
        
        String passString = new String (passw);
        
-       
-       // ***************************************************************//
        Connection conn = null;
        Statement stmt = null;
        try{
@@ -74,11 +72,11 @@ public class Login extends JPanel {
           
           rs.close();
        } catch (Exception e){
-           //JOptionPane.showMessageDialog(null, "Could not connect to database");
+           
     	   JOptionPane.showMessageDialog(null, "Invalid id or password");
        	}
        
-       // ***************************************************************//
+      
        return flag;
        
    }

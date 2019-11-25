@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -25,13 +29,35 @@ public class Student extends javax.swing.JFrame {
         int id =a;
         setLocationRelativeTo(null);
         //add code here for populating the tables and JLabels
-        StudentID.setText(Integer.toString(a));
-        // StudentName1.setText(text);
-        //method call for pulling info from the student table
+        StudentID.setText("Student ID: " +Integer.toString(a));
+        // ****************************************************************
+        Connection conn = null;
+        Statement stmt = null;
+        String fullName = null;
+        try{
+           conn = Db.java_db();
+           stmt = conn.createStatement();
+           
+           String sql = "SELECT first_name, last_name FROM student_info WHERE student_id = " + id;
+           ResultSet rs = stmt.executeQuery(sql);
+   
+              //Retrieve by column name
+           while(rs.next()) {
+        	   String firstN = rs.getString("first_name");
+               String lastN = rs.getString("last_name");
+               fullName = firstN +" " +lastN;
+           }
+           rs.close();
+        } catch (Exception e){
+            System.out.println(e);
+        	}
+        //*****************************************************************
+         StudentName1.setText(fullName);
+        
         dispTableInfo(id);
     }
 //Finish according to video 15 by mouna naravani...unless Julio feels so incined 
-    //to be a dear and put some magic code right here....
+    // to be a dear and put some magic code right here....
     private void dispTableInfo(int id){
     	
         try{
