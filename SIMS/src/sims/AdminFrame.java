@@ -280,6 +280,11 @@ public class AdminFrame extends javax.swing.JFrame {
         gradeLabel.setText("Enter Grade:");
 
         studentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "1", "2", "3", "4" }));
+        studentSelection.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                studentSelectionItemStateChanged(evt);
+            }
+        });
 
         courseSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -509,13 +514,48 @@ public class AdminFrame extends javax.swing.JFrame {
         //addGrades method.
     }//GEN-LAST:event_changeGradeActionPerformed
 
+    /**
+     * this method will fill the courseSelection comboBox with data based on the 
+     * studentSelection comboBox.
+     */
+    private void fillCourseCombo(){
+        try{
+            int sdi = Integer.parseInt(String.valueOf(studentSelection.getSelectedItem()));
+            Connection conn = Db.java_db();
+            String sql = "select * from courses where student_id = "+sdi;
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                String courseID = rs.getString("course_id");
+                String courseName = rs.getString("course_name");
+                courseSelection.addItem(courseID +" "+ courseName);
+            }
+            
+        }catch(Exception w){
+            System.out.println(w);
+        }
+    }
+    
+    /**
+     * this method clears the selections for the comboBoxes and text fields.
+     * @param evt button click
+     */
+    
     private void clearSelectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSelectionsActionPerformed
         // TODO add your handling code here:
         //set studentSelection to null          these three are JComboBoxes...
         //clear courseSelection somehow
         //set assignmentSelection to null
         gradeEntered.setText("");
+        
     }//GEN-LAST:event_clearSelectionsActionPerformed
+
+    private void studentSelectionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_studentSelectionItemStateChanged
+        // TODO add your handling code here:
+        courseSelection.removeAllItems();
+        fillCourseCombo();
+    }//GEN-LAST:event_studentSelectionItemStateChanged
 
     /**
      * this method will pull the last id from the database, add one to it, and

@@ -110,16 +110,6 @@ public class Login {
    }
    
    /**
-    * view enrolled class method
-    */
-   public void viewClasses(){
-       //automatically display the classes that the student is enrolled in once
-       //they actually enroll in them. place in the panel in a nonEditable JTextBox 
-       //or something along those lines. Maybe consider having the database somehow
-       //output their associated values here
-   }
-   
-   /**
     * add grades to enrolled courses.
     */
    public void addGrades(){
