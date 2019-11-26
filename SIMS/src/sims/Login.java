@@ -89,7 +89,7 @@ public class Login {
     * @param s  the student ID 
     * @param c  the course number
     */
-   public static void addClass(int s, int c){
+   public static void addClass(int s, int c, String cn){
        try{
            Connection conn = Db.java_db();
            Statement stmt = conn.createStatement();

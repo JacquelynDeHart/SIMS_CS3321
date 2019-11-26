@@ -492,16 +492,19 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //pull from stuID and new JLabel and pass to Update.java
         int idNum = Integer.parseInt(stuID.getText());
-        int courseID; String p;
+        int courseID; String p,q = null;
         String x = String.valueOf(courseList.getSelectedItem());
         if(x.length()>4){
             p = x.substring(0,4);
         }else{
             p =x;
         }
-        courseID = Integer.parseInt(p);
+        if(x.length()>4){
+            q = x.substring(5, x.length());
+        }
+        courseID = Integer.parseInt(p); String courseName = q;
         System.out.println(idNum+"\t"+ courseID);   //tests values to be passed in following method
-        Login.addClass(idNum, courseID);
+        Login.addClass(idNum, courseID, courseName);
     }//GEN-LAST:event_addClassActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
