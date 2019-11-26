@@ -214,7 +214,7 @@ public class Login {
         	 gpa = "1.0";
          }
          else {
-        	 gpa = ">1";
+        	 gpa = "<1";
          }
  
          }catch(Exception e) {
