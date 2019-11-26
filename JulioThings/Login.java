@@ -1,3 +1,8 @@
+/*
+ * This class holds the methods for performing password validation, 
+ * GPA calculation, adding, and deleting courses. It is called from 
+ * mainFrame and AdminFrame.
+ */
 package fetch;
 import java.sql.*;
 import java.util.Scanner;
@@ -5,18 +10,16 @@ import java.util.Scanner;
 import javax.swing.*;
 
 
-public class Login extends JPanel {
+public class Login {
 	
    private String pass;
-   private int stuID;
-   private JPanel display;
-   
+   private int stuID; 
    
  
    public Login(String a, int ID) {
        pass = a;
        stuID = ID;
-       display = new JPanel(); 
+      
        
    }
    
@@ -35,6 +38,8 @@ public class Login extends JPanel {
        
        String passString = new String (passw);
        
+       
+       // ***************************************************************//
        Connection conn = null;
        Statement stmt = null;
        try{
@@ -57,36 +62,51 @@ public class Login extends JPanel {
              String password = rs.getString("password");
       
                  
-         if  ((student_id == id) & (password.equals(passString))) {
-        	 
-        	 JOptionPane.showMessageDialog(null, "Succes! Your student id and password are valid");
-        	 flag = true; 
-        	//call database and pull associated userID password to validate.
-             //test it here... change flag appropriately 
-             
-         	} else {
+         if  ((student_id == id) & (password.equals(passString))) {        	 
+        	 //JOptionPane.showMessageDialog(null, "Succes! Your student id and password are valid");
+        	 flag = true;             
+            } 
+         else {
          		JOptionPane.showMessageDialog(null, "Invalid id or password");
-         }
+            }
         
          } // WHILE LOOP
           
           rs.close();
-       } catch (Exception e){
-           
+        } catch (Exception e){
+           //JOptionPane.showMessageDialog(null, "Could not connect to database");
     	   JOptionPane.showMessageDialog(null, "Invalid id or password");
        	}
        
-      
+       // ***************************************************************//
        return flag;
        
    }
    
    /**
-    * add a class method
+    * This method will take parameters passed to it for the student ID and the course ID
+    * and add the course to the database and associate it with the student's record.
+    * @param s  the student ID 
+    * @param c  the course number
     */
-   public void addClass(){
-       //make JComboBox here with courses to select from. Consider using an ArrayList
-       //or a LinkedList for the courses
+   public static void addClass(int s, int c){
+	    
+//       try{
+//           Connection conn = Db.java_db();
+//           
+//           String sql = "INSERT INTO courses (course_id, course_name, student_id) VALUES (?, ? ,?)";
+//           
+//           PreparedStatement statement = conn.prepareStatement(sql);
+//           
+//           statement.setInt(1, c);
+//           statement.setString(2, "");
+//           statement.setInt(3, s);
+//         
+//           
+//       }catch(Exception e){
+//           System.out.println(e);
+//       }
+       
    }
    
    /**
@@ -98,28 +118,43 @@ public class Login extends JPanel {
    }
    
    /**
-    * view enrolled class method
+    * this method will accept passed values and add/change grades in the database
+    * for the selected student based on the course and assignment.
+    * @param sdi    the value for the student_id
+    * @param cID    the value for the course_id
+    * @param asgn   the String containing either exam_one or final_exam exactly
+    * @param gr     the value of the grade to be added or changed.
     */
-   public void viewClasses(){
-       //automatically display the classes that the student is enrolled in once
-       //they actually enroll in them. place in the panel in a nonEditable JTextBox 
-       //or something along those lines. Maybe consider having the database somehow
-       //output their associated values here
-   }
-   
-   /**
-    * view grades for all courses enrolled
-    */
-   public void viewGrades(){
-       //maybe consider combining this method with above
+   public static void addGrades(int sdi, int cID, String asgn, int gr){
+       int studentID = sdi;
+       int courseID = cID;
+       String asmt = asgn;
+       int grade = gr;
+       Connection conn = Db.java_db();
+       System.out.println("sdi:"+studentID+"\t cID:"+courseID+"\t asgn:"+asmt+"\t gr:"+grade);
+       
+      // String sql = "UPDATE courses SET exam_one= ?, WHERE student_id= " + sdi;
+       
+      // String sql = "UPDATE courses SET final_exam= ? WHERE student_id= " + sdi;
+       
+//      try { 
+//       PreparedStatement statement = conn.prepareStatement(sql);
+//       
+//       statement.setInt(1, grade);
+//      } catch (SQLException ex) {
+//    	    System.out.println(ex);
+//      }
    }
    
    /**
     * view GPA
     */
    public void showGPA(){
-       //add the grades together for a specific student and divide by the number
-       //of classes that they have taken.
+      
+       
+	   
+	   
+	   
    }
    
 //   /**

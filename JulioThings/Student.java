@@ -1,23 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class is passed a value from the mainFrame and uses this value to 
+ * pull and display information from the connected database. When a user is 
+ * done viewing this page, they may click the button to return to the mainFrame.
  */
 package fetch;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
-
 import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author Andrew
+ * @author Andrew Tomich, Jacquelyn Johnson, Julio Quintero
  */
 public class Student extends javax.swing.JFrame {
 
@@ -29,14 +25,14 @@ public class Student extends javax.swing.JFrame {
         int id =a;
         setLocationRelativeTo(null);
         //add code here for populating the tables and JLabels
-        StudentID.setText("Student ID: " +Integer.toString(a));
-        // ****************************************************************
-        Connection conn = null;
-        Statement stmt = null;
+        studentID.setText("ID: " + Integer.toString(a));
+        // StudentName1.setText(text);
+        //method call for pulling info from the student table
+              // ****************************************************************
         String fullName = null;
         try{
-           conn = Db.java_db();
-           stmt = conn.createStatement();
+           Connection conn = Db.java_db();
+           Statement stmt = conn.createStatement();
            
            String sql = "SELECT first_name, last_name FROM student_info WHERE student_id = " + id;
            ResultSet rs = stmt.executeQuery(sql);
@@ -45,52 +41,132 @@ public class Student extends javax.swing.JFrame {
            while(rs.next()) {
         	   String firstN = rs.getString("first_name");
                String lastN = rs.getString("last_name");
-               fullName = firstN +" " +lastN;
+               fullName = firstN + " " +lastN;
            }
            rs.close();
         } catch (Exception e){
             System.out.println(e);
         	}
         //*****************************************************************
-         StudentName1.setText(fullName);
-        
-        dispTableInfo(id);
+         studentName.setText(fullName);
+         dispTableInfo(id);
+         
+         
+      // ***************************************************************//
+         String gpa = null;
+         try{
+        	 
+        	 Connection conn = null;
+             Statement stmt = null;
+             
+             conn = Db.java_db();
+   
+            stmt = conn.createStatement();
+            
+            String sql = "SELECT sum(exam_one  + final_exam)/6 AS GPA "
+            		+ "FROM courses "
+            		+ "WHERE student_id =" + id;
+            
+            ResultSet rs = stmt.executeQuery(sql);
+    
+            while(rs.next()){
+               //Retrieve by column name
+              gpa  = rs.getString("GPA");
+           
+           } // WHILE LOOP
+       
+            
+            rs.close();
+          } catch (Exception e){
+             //JOptionPane.showMessageDialog(null, "Could not connect to database");
+      	   System.out.println(e);
+      	   
+      	
+         	}
+         try {
+          
+          float realGpa = Float.parseFloat(gpa);
+          
+         if(realGpa >= 93) {
+        	 gpa = "4.0";
+         }
+         else if (realGpa >= 92 & realGpa <= 92 ){
+        	 gpa = "3.7";
+         }
+         else if (realGpa >= 87 & realGpa <= 89 ){
+        	 gpa = "3.3";
+         }
+         else if (realGpa >= 83 & realGpa <= 86 ){
+        	 gpa = "3.0";
+         }
+         else if (realGpa >= 80 & realGpa <= 92 ){
+        	 gpa = "2.7";
+         }
+         else if (realGpa >= 77 & realGpa <= 79 ){
+        	 gpa = "2.3";
+         }
+         else if (realGpa >= 73 & realGpa <= 76 ){
+        	 gpa = "2.0";
+         }
+         else if (realGpa >= 70 & realGpa <= 72 ){
+        	 gpa = "1.7";
+         }
+         else if (realGpa >= 67 & realGpa <= 69 ){
+        	 gpa = "1.3";
+         }
+         else if (realGpa >= 65 & realGpa <= 66 ){
+        	 gpa = "1.0";
+         }
+         else {
+        	 gpa = ">1";
+         }
+ 
+         	displayGPA.setText("GPA: "+ gpa);
+         }catch(Exception e) {
+        	 System.out.println(e);
+         }
+         
+         //*******************************************************
     }
-//Finish according to video 15 by mouna naravani...unless Julio feels so incined 
-    // to be a dear and put some magic code right here....
-    private void dispTableInfo(int id){
+    
+        public void dispTableInfo(int id){
     	
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info", "root", "vermilion171190");
-            
-            String sql = "SELECT * FROM student_info WHERE student_id = " + id;
+            Connection conn = Db.java_db();
+            String sql = "SELECT * FROM courses WHERE student_id = " + id;
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            dispStuTable.setModel(DbUtils.resultSetToTableModel(rs));
-              
+            dispStuTable.setModel(DbUtils.resultSetToTableModel(rs));             
             
         }
         catch(Exception e){
             System.out.println(e);
         }
+        
     }
-    
 
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         exit = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        courseScrollPane = new javax.swing.JScrollPane();
         dispStuTable = new javax.swing.JTable();
-        StudentID = new javax.swing.JLabel();
-        DisplayGPA = new javax.swing.JLabel();
-        RegisteredBanner = new javax.swing.JLabel();
-        GatorIcon = new javax.swing.JLabel();
-        StudentName1 = new javax.swing.JLabel();
+        studentName = new javax.swing.JLabel();
+        studentID = new javax.swing.JLabel();
+        registeredBanner = new javax.swing.JLabel();
+        gatorIcon = new javax.swing.JLabel();
+        displayGPA = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(956, 515));
+        setTitle("Student View - SIMS");
+        setBackground(new java.awt.Color(165, 191, 217));
 
         exit.setMnemonic('x');
         exit.setText("Exit");
@@ -99,6 +175,8 @@ public class Student extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
+
+        courseScrollPane.setBackground(new java.awt.Color(165, 191, 217));
 
         dispStuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,72 +189,72 @@ public class Student extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(dispStuTable);
+        courseScrollPane.setViewportView(dispStuTable);
 
-        StudentID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        StudentID.setText("Student ID");
+        studentName.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        studentName.setText("Student Name");
 
-        DisplayGPA.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        DisplayGPA.setText("GPA");
+        studentID.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        studentID.setText("ID");
 
-        RegisteredBanner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        RegisteredBanner.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        RegisteredBanner.setText("Registered Courses");
+        registeredBanner.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        registeredBanner.setText("Registered Courses:");
 
-       // GatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sims/uhd_gatorbust.jpg"))); // NOI18N
+        gatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("uhd_gatorbust.jpg"))); // NOI18N
 
-        StudentName1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        StudentName1.setText("Student Name");
+        displayGPA.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        displayGPA.setText("GPA:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(DisplayGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(courseScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 33, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(displayGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(RegisteredBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(StudentName1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)))
-                        .addComponent(GatorIcon)
-                        .addGap(69, 69, 69)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                                .addComponent(studentName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(studentID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(registeredBanner))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gatorIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GatorIcon)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(StudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StudentName1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addComponent(RegisteredBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(registeredBanner))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(gatorIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(courseScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exit)
-                        .addContainerGap())
+                        .addGap(28, 28, 28)
+                        .addComponent(exit))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(DisplayGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                        .addComponent(displayGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -184,7 +262,8 @@ public class Student extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        new mainFrame().setVisible(true);
+        dispose();
     }//GEN-LAST:event_exitActionPerformed
 
     /**
@@ -223,13 +302,13 @@ public class Student extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel DisplayGPA;
-    private javax.swing.JLabel GatorIcon;
-    private javax.swing.JLabel RegisteredBanner;
-    public static javax.swing.JLabel StudentID;
-    private javax.swing.JLabel StudentName1;
+    private javax.swing.JScrollPane courseScrollPane;
     private javax.swing.JTable dispStuTable;
+    private javax.swing.JLabel displayGPA;
     private javax.swing.JButton exit;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel gatorIcon;
+    private javax.swing.JLabel registeredBanner;
+    private javax.swing.JLabel studentID;
+    private javax.swing.JLabel studentName;
     // End of variables declaration//GEN-END:variables
 }
