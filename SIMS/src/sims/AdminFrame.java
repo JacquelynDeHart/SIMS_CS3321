@@ -33,6 +33,7 @@ public class AdminFrame extends javax.swing.JFrame {
         String[] chooseCourse = {"4315 Operating Systems","2302 Digital Logic",
                 "3308 Numerical Methods","3321 Software Engineering","3326 Network Security",
         "4328 Parallel Computing"};
+        fillStudentCombo();
     }
 
     /**
@@ -78,6 +79,12 @@ public class AdminFrame extends javax.swing.JFrame {
         changeGrade = new javax.swing.JButton();
         clearSelections = new javax.swing.JButton();
         warning = new javax.swing.JLabel();
+        deleteClass = new javax.swing.JPanel();
+        stuSelect = new javax.swing.JLabel();
+        stuSel = new javax.swing.JComboBox<>();
+        courseSel = new javax.swing.JLabel();
+        courseSelect = new javax.swing.JComboBox<>();
+        deleteCourse = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         previous = new javax.swing.JButton();
 
@@ -365,6 +372,65 @@ public class AdminFrame extends javax.swing.JFrame {
 
         adminTabbedPane.addTab("Add Grades", addGradesPanel);
 
+        stuSelect.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        stuSelect.setText("Select Student: ");
+
+        stuSel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        stuSel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                stuSelItemStateChanged(evt);
+            }
+        });
+
+        courseSel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        courseSel.setText("Select Course:");
+
+        courseSelect.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        courseSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        deleteCourse.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        deleteCourse.setMnemonic('d');
+        deleteCourse.setText("Delete");
+        deleteCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCourseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deleteClassLayout = new javax.swing.GroupLayout(deleteClass);
+        deleteClass.setLayout(deleteClassLayout);
+        deleteClassLayout.setHorizontalGroup(
+            deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteClassLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stuSelect)
+                    .addComponent(courseSel))
+                .addGap(80, 80, 80)
+                .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stuSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(594, Short.MAX_VALUE))
+        );
+        deleteClassLayout.setVerticalGroup(
+            deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteClassLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stuSelect)
+                    .addComponent(stuSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseSel)
+                    .addComponent(courseSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addComponent(deleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
+        );
+
+        adminTabbedPane.addTab("Delete Class", deleteClass);
+
         exit.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         exit.setMnemonic('x');
         exit.setText("Exit");
@@ -566,6 +632,42 @@ public class AdminFrame extends javax.swing.JFrame {
         }
     }
     
+    private void fillDelCourseCombo(){
+    try{
+        int sdi = Integer.parseInt(String.valueOf(stuSel.getSelectedItem()));
+        Connection conn = Db.java_db();
+        String sql = "select * from courses where student_id = "+sdi;
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        while(rs.next()){
+            String courseID = rs.getString("course_id");
+            String courseName = rs.getString("course_name");
+            courseSelect.addItem(courseID +" "+ courseName);
+        }
+
+    }catch(Exception w){
+        System.out.println(w);
+    }
+}
+    
+    private void fillStudentCombo(){
+        try{
+            Connection conn = Db.java_db();
+            String sql = "select * from student_info";
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                String studId = rs.getString("student_id");
+                stuSel.addItem(studId);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+    }
+    
     /**
      * this method clears the selections for the comboBoxes and text fields on
      * the Add Grades tab.
@@ -588,6 +690,28 @@ public class AdminFrame extends javax.swing.JFrame {
         courseSelection.removeAllItems();
         fillCourseCombo();
     }//GEN-LAST:event_studentSelectionItemStateChanged
+
+    private void stuSelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stuSelItemStateChanged
+        // TODO add your handling code here:
+        courseSelect.removeAllItems();
+        fillDelCourseCombo();
+    }//GEN-LAST:event_stuSelItemStateChanged
+
+    private void deleteCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseActionPerformed
+        // TODO add your handling code here:
+        int courseID; String p;
+        String x = String.valueOf(courseSelect.getSelectedItem());
+        if(x.length()>4){
+            p = x.substring(0,4);
+        }else{
+            p =x;
+        }
+        courseID = Integer.parseInt(p);
+        //collects the student_id from combobox
+        int sdi = Integer.parseInt(String.valueOf(stuSel.getSelectedItem()));
+        
+        Login.delClass(sdi, courseID);
+    }//GEN-LAST:event_deleteCourseActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -649,8 +773,12 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton clearSelections;
     private javax.swing.JLabel courseLabel;
     private javax.swing.JComboBox<String> courseList;
+    private javax.swing.JLabel courseSel;
+    private javax.swing.JComboBox<String> courseSelect;
     private javax.swing.JLabel courseSelectLabel;
     private javax.swing.JComboBox<String> courseSelection;
+    private javax.swing.JPanel deleteClass;
+    private javax.swing.JButton deleteCourse;
     private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
     private javax.swing.JTable dispCourseTable;
@@ -668,6 +796,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane selectStudentDisp;
     private javax.swing.JTextField stuID;
     private javax.swing.JLabel stuNameLabel;
+    private javax.swing.JComboBox<String> stuSel;
+    private javax.swing.JLabel stuSelect;
     private javax.swing.JTextField studName;
     private javax.swing.JLabel studentLabel;
     private javax.swing.JComboBox<String> studentSelection;

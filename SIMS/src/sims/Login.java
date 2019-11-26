@@ -88,6 +88,7 @@ public class Login {
     * and add the course to the database and associate it with the student's record.
     * @param s  the student ID 
     * @param c  the course number
+    * @param cn the course name
     */
    public static void addClass(int s, int c, String cn){
        try{
