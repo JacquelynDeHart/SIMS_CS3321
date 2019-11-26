@@ -24,11 +24,8 @@ public class Student extends javax.swing.JFrame {
         initComponents();
         int id =a;
         setLocationRelativeTo(null);
-        //add code here for populating the tables and JLabels
         studentID.setText("ID: " + Integer.toString(a));
-        // StudentName1.setText(text);
-        //method call for pulling info from the student table
-              // ****************************************************************
+        
         String fullName = null;
         try{
            Connection conn = Db.java_db();
@@ -47,86 +44,12 @@ public class Student extends javax.swing.JFrame {
         } catch (Exception e){
             System.out.println(e);
         	}
-        //*****************************************************************
+   
          studentName.setText(fullName);
          dispTableInfo(id);
          
+         displayGPA.setText("GPA: "+ Login.showGPA(a));
          
-      // ***************************************************************//
-         String gpa = null;
-         try{
-        	 
-        	 Connection conn = null;
-             Statement stmt = null;
-             
-             conn = Db.java_db();
-   
-            stmt = conn.createStatement();
-            
-            String sql = "SELECT sum(exam_one  + final_exam)/6 AS GPA "
-            		+ "FROM courses "
-            		+ "WHERE student_id =" + id;
-            
-            ResultSet rs = stmt.executeQuery(sql);
-    
-            while(rs.next()){
-               //Retrieve by column name
-              gpa  = rs.getString("GPA");
-           
-           } // WHILE LOOP
-       
-            
-            rs.close();
-          } catch (Exception e){
-             //JOptionPane.showMessageDialog(null, "Could not connect to database");
-      	   System.out.println(e);
-      	   
-      	
-         	}
-         try {
-          
-          float realGpa = Float.parseFloat(gpa);
-          
-         if(realGpa >= 93) {
-        	 gpa = "4.0";
-         }
-         else if (realGpa >= 92 & realGpa <= 92 ){
-        	 gpa = "3.7";
-         }
-         else if (realGpa >= 87 & realGpa <= 89 ){
-        	 gpa = "3.3";
-         }
-         else if (realGpa >= 83 & realGpa <= 86 ){
-        	 gpa = "3.0";
-         }
-         else if (realGpa >= 80 & realGpa <= 92 ){
-        	 gpa = "2.7";
-         }
-         else if (realGpa >= 77 & realGpa <= 79 ){
-        	 gpa = "2.3";
-         }
-         else if (realGpa >= 73 & realGpa <= 76 ){
-        	 gpa = "2.0";
-         }
-         else if (realGpa >= 70 & realGpa <= 72 ){
-        	 gpa = "1.7";
-         }
-         else if (realGpa >= 67 & realGpa <= 69 ){
-        	 gpa = "1.3";
-         }
-         else if (realGpa >= 65 & realGpa <= 66 ){
-        	 gpa = "1.0";
-         }
-         else {
-        	 gpa = ">1";
-         }
- 
-         	displayGPA.setText("GPA: "+ gpa);
-         }catch(Exception e) {
-        	 System.out.println(e);
-         }
-         
-         //*******************************************************
     }
     
         public void dispTableInfo(int id){
