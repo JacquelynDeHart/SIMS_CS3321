@@ -122,16 +122,105 @@ public class Login {
        int courseID = cID;
        String asmt = asgn;
        int grade = gr;
-       //Connection conn = Db.java_db();
-       System.out.println("sdi:"+studentID+"\t cID:"+courseID+"\t asgn:"+asmt+"\t gr:"+grade);
+       Connection conn = Db.java_db();
+       
+      String sql = " UPDATE courses " + "SET "+ asmt + " = ? " + " WHERE student_id = " + studentID + " AND course_id = " + courseID;
+       
+       
+      try { 
+       PreparedStatement statement = conn.prepareStatement(sql);
+       
+       statement.setInt(1, grade);
+       
+       int rowsUpdated = statement.executeUpdate();
+       
+       if (rowsUpdated > 0) {
+           System.out.println("An existing user was updated successfully!");
+       }
+       
+      } catch (SQLException ex) {
+    	    System.out.println(ex);
+      }
    }
    
    /**
     * view GPA
     */
-   public void showGPA(){
+   public static String showGPA(int id){
        //add the grades together for a specific student and divide by the number
        //of classes that they have taken.
+       String gpa = null;
+         try{
+        	 
+        	 Connection conn = null;
+             Statement stmt = null;
+             
+             conn = Db.java_db();
+   
+            stmt = conn.createStatement();
+            
+            String sql = "SELECT sum(exam_one  + final_exam)/6 AS GPA "
+            		+ "FROM courses "
+            		+ "WHERE student_id =" + id;
+            
+            ResultSet rs = stmt.executeQuery(sql);
+    
+            while(rs.next()){
+               //Retrieve by column name
+              gpa  = rs.getString("GPA");
+           
+           } // WHILE LOOP
+       
+            
+            rs.close();
+          } catch (Exception e){
+             //JOptionPane.showMessageDialog(null, "Could not connect to database");
+      	   System.out.println(e);
+      	   
+      	
+         	}
+         try {
+          
+          float realGpa = Float.parseFloat(gpa);
+          
+         if(realGpa >= 93) {
+        	 gpa = "4.0";
+         }
+         else if (realGpa >= 92 & realGpa <= 92 ){
+        	 gpa = "3.7";
+         }
+         else if (realGpa >= 87 & realGpa <= 89 ){
+        	 gpa = "3.3";
+         }
+         else if (realGpa >= 83 & realGpa <= 86 ){
+        	 gpa = "3.0";
+         }
+         else if (realGpa >= 80 & realGpa <= 92 ){
+        	 gpa = "2.7";
+         }
+         else if (realGpa >= 77 & realGpa <= 79 ){
+        	 gpa = "2.3";
+         }
+         else if (realGpa >= 73 & realGpa <= 76 ){
+        	 gpa = "2.0";
+         }
+         else if (realGpa >= 70 & realGpa <= 72 ){
+        	 gpa = "1.7";
+         }
+         else if (realGpa >= 67 & realGpa <= 69 ){
+        	 gpa = "1.3";
+         }
+         else if (realGpa >= 65 & realGpa <= 66 ){
+        	 gpa = "1.0";
+         }
+         else {
+        	 gpa = ">1";
+         }
+ 
+         }catch(Exception e) {
+        	 System.out.println(e);
+         }
+         return gpa;
    }
    
 //   /**
