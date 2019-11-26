@@ -102,11 +102,14 @@ public class Login {
    }
    
    /**
-    * delete a class method
+    * this method will delete a chosen class for a specified user.
+    * @param s  the student id
+    * @param c  the course id
     */
-   public void delClass(){
+   public static void delClass(int s, int c){
        //same as above, except the course population will be from the database table
        // data that is associated with this user
+       
    }
    
    /**
@@ -222,11 +225,5 @@ public class Login {
          }
          return gpa;
    }
-   
-//   /**
-//    * calculation of GPA
-//    */
-//   public double calcGPA(){
-//       
-//   }
+
 }
