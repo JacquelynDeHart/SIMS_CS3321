@@ -25,7 +25,7 @@ public class Student extends javax.swing.JFrame {
         int id =a;
         setLocationRelativeTo(null);
         //add code here for populating the tables and JLabels
-        studentID.setText(Integer.toString(a));
+        studentID.setText("ID: "+Integer.toString(a));
         // StudentName1.setText(text);
         //method call for pulling info from the student table
               // ****************************************************************

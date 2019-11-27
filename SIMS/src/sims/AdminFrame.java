@@ -34,6 +34,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 "3308 Numerical Methods","3321 Software Engineering","3326 Network Security",
         "4328 Parallel Computing"};
         fillStudentCombo();
+        fillStudCombo();
     }
 
     /**
@@ -45,7 +46,7 @@ public class AdminFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        adminTabbedPane = new javax.swing.JTabbedPane();
+        javax.swing.JTabbedPane adminTabbedPane = new javax.swing.JTabbedPane();
         modify = new javax.swing.JPanel();
         stuID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -61,12 +62,6 @@ public class AdminFrame extends javax.swing.JFrame {
         dispCourseTable = new javax.swing.JTable();
         courseLabel = new javax.swing.JLabel();
         courseList = new javax.swing.JComboBox<>();
-        addNew = new javax.swing.JPanel();
-        stuNameLabel = new javax.swing.JLabel();
-        passwLabel = new javax.swing.JLabel();
-        studName = new javax.swing.JTextField();
-        passw = new javax.swing.JTextField();
-        submit = new javax.swing.JButton();
         addGradesPanel = new javax.swing.JPanel();
         studentLabel = new javax.swing.JLabel();
         courseSelectLabel = new javax.swing.JLabel();
@@ -85,6 +80,22 @@ public class AdminFrame extends javax.swing.JFrame {
         courseSel = new javax.swing.JLabel();
         courseSelect = new javax.swing.JComboBox<>();
         deleteCourse = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        delClassTable = new javax.swing.JTable();
+        tableLabel = new javax.swing.JLabel();
+        addNew = new javax.swing.JPanel();
+        firstName = new javax.swing.JLabel();
+        passwLabel = new javax.swing.JLabel();
+        studFirstName = new javax.swing.JTextField();
+        passw = new javax.swing.JTextField();
+        submit = new javax.swing.JButton();
+        lastName = new javax.swing.JLabel();
+        studLastName = new javax.swing.JTextField();
+        genIDLabel = new javax.swing.JLabel();
+        deleteStudent = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        studSelection = new javax.swing.JComboBox<>();
+        delStudent = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         previous = new javax.swing.JButton();
 
@@ -95,6 +106,7 @@ public class AdminFrame extends javax.swing.JFrame {
         adminTabbedPane.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
 
         stuID.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        stuID.setToolTipText("Enter Student ID here");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel1.setText("Enter Student ID: ");
@@ -102,6 +114,7 @@ public class AdminFrame extends javax.swing.JFrame {
         modStudent.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         modStudent.setMnemonic('s');
         modStudent.setText("Select");
+        modStudent.setToolTipText("Select a student to modify");
         modStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modStudentActionPerformed(evt);
@@ -136,6 +149,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         addClass.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         addClass.setText("Add Class");
+        addClass.setToolTipText("Add class to selected student");
         addClass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addClassActionPerformed(evt);
@@ -147,6 +161,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         clear.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         clear.setText("Clear");
+        clear.setToolTipText("Clear student selection");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
@@ -214,7 +229,7 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(courseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectStudentDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(courseLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(allCourseDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,54 +241,6 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         adminTabbedPane.addTab("Modify", modify);
-
-        stuNameLabel.setText("Student's Name: ");
-
-        passwLabel.setText("Password: ");
-
-        submit.setMnemonic('b');
-        submit.setText("Submit");
-        submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout addNewLayout = new javax.swing.GroupLayout(addNew);
-        addNew.setLayout(addNewLayout);
-        addNewLayout.setHorizontalGroup(
-            addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addNewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(submit)
-                    .addGroup(addNewLayout.createSequentialGroup()
-                        .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(stuNameLabel)
-                            .addComponent(passwLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(studName)
-                            .addComponent(passw, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
-                .addContainerGap(690, Short.MAX_VALUE))
-        );
-        addNewLayout.setVerticalGroup(
-            addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addNewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stuNameLabel)
-                    .addComponent(studName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwLabel)
-                    .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(submit)
-                .addContainerGap(307, Short.MAX_VALUE))
-        );
-
-        adminTabbedPane.addTab("Add New", addNew);
 
         studentLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         studentLabel.setText("Select Student: ");
@@ -298,6 +265,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         assignmentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "exam_one", "final_exam" }));
 
+        changeGrade.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         changeGrade.setMnemonic('g');
         changeGrade.setText("Submit Grade");
         changeGrade.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +274,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        clearSelections.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         clearSelections.setText("Clear");
         clearSelections.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +336,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeGrade)
                     .addComponent(clearSelections))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         adminTabbedPane.addTab("Add Grades", addGradesPanel);
@@ -375,7 +344,8 @@ public class AdminFrame extends javax.swing.JFrame {
         stuSelect.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         stuSelect.setText("Select Student: ");
 
-        stuSel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        stuSel.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        stuSel.setToolTipText("Select a student by ID number");
         stuSel.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 stuSelItemStateChanged(evt);
@@ -385,17 +355,37 @@ public class AdminFrame extends javax.swing.JFrame {
         courseSel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         courseSel.setText("Select Course:");
 
-        courseSelect.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        courseSelect.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
         courseSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        courseSelect.setToolTipText("Select course to delete");
 
-        deleteCourse.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        deleteCourse.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         deleteCourse.setMnemonic('d');
         deleteCourse.setText("Delete");
+        deleteCourse.setToolTipText("Delete selected course. This is not reversible.");
         deleteCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCourseActionPerformed(evt);
             }
         });
+
+        delClassTable.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        delClassTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        delClassTable.setName(""); // NOI18N
+        jScrollPane1.setViewportView(delClassTable);
+
+        tableLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        tableLabel.setText("Registered Courses:");
 
         javax.swing.GroupLayout deleteClassLayout = new javax.swing.GroupLayout(deleteClass);
         deleteClass.setLayout(deleteClassLayout);
@@ -404,14 +394,18 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(deleteClassLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stuSelect)
-                    .addComponent(courseSel))
-                .addGap(80, 80, 80)
-                .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stuSel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(594, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(deleteClassLayout.createSequentialGroup()
+                        .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(stuSelect)
+                            .addComponent(courseSel))
+                        .addGap(80, 80, 80)
+                        .addGroup(deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(courseSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stuSel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(tableLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         deleteClassLayout.setVerticalGroup(
             deleteClassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,14 +420,131 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(courseSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addComponent(deleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(tableLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         adminTabbedPane.addTab("Delete Class", deleteClass);
 
+        firstName.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        firstName.setText("First Name: ");
+
+        passwLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        passwLabel.setText("Password: ");
+
+        submit.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        submit.setMnemonic('b');
+        submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
+
+        lastName.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        lastName.setText("Last Name");
+
+        genIDLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        genIDLabel.setText("Generated ID:");
+
+        javax.swing.GroupLayout addNewLayout = new javax.swing.GroupLayout(addNew);
+        addNew.setLayout(addNewLayout);
+        addNewLayout.setHorizontalGroup(
+            addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(submit)
+                    .addGroup(addNewLayout.createSequentialGroup()
+                        .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewLayout.createSequentialGroup()
+                                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(firstName)
+                                    .addComponent(passwLabel))
+                                .addGap(18, 18, 18))
+                            .addGroup(addNewLayout.createSequentialGroup()
+                                .addComponent(lastName)
+                                .addGap(26, 26, 26)))
+                        .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(studFirstName)
+                            .addComponent(passw, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(studLastName))))
+                .addGap(47, 47, 47)
+                .addComponent(genIDLabel)
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
+        addNewLayout.setVerticalGroup(
+            addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(firstName)
+                    .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(studFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(genIDLabel)))
+                .addGap(30, 30, 30)
+                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lastName)
+                    .addComponent(studLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(addNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwLabel)
+                    .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(submit)
+                .addContainerGap(232, Short.MAX_VALUE))
+        );
+
+        adminTabbedPane.addTab("Add Student", addNew);
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel2.setText("Select Student: ");
+
+        studSelection.setToolTipText("Select student to delete. This cannot be undone.");
+
+        delStudent.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        delStudent.setText("Delete");
+        delStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delStudentActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deleteStudentLayout = new javax.swing.GroupLayout(deleteStudent);
+        deleteStudent.setLayout(deleteStudentLayout);
+        deleteStudentLayout.setHorizontalGroup(
+            deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteStudentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(delStudent)
+                    .addGroup(deleteStudentLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(studSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(615, Short.MAX_VALUE))
+        );
+        deleteStudentLayout.setVerticalGroup(
+            deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteStudentLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(studSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(delStudent)
+                .addContainerGap(322, Short.MAX_VALUE))
+        );
+
+        adminTabbedPane.addTab("Delete Student", deleteStudent);
+
         exit.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         exit.setMnemonic('x');
         exit.setText("Exit");
+        exit.setToolTipText("Shutdown program");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);
@@ -442,6 +553,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         previous.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         previous.setText("Previous");
+        previous.setToolTipText("Return to Login window");
         previous.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 previousActionPerformed(evt);
@@ -467,7 +579,7 @@ public class AdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adminTabbedPane)
+                .addComponent(adminTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exit)
@@ -477,7 +589,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     public void dispTableInfo(){
     	
         try{
@@ -505,6 +617,13 @@ public class AdminFrame extends javax.swing.JFrame {
         stuID.setEditable(false);
         //send this studID to the database and return the info associated with it
         //and put in selStudTable
+        
+        dispCourseTablePop(studID);
+        dispSelStudentTablePop(studID);
+        
+    }//GEN-LAST:event_modStudentActionPerformed
+
+    private void dispSelStudentTablePop(int studID){
         try{
             Connection conn = Db.java_db();
             String sql = "SELECT * FROM student_info WHERE student_id = " + studID;
@@ -518,6 +637,9 @@ public class AdminFrame extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println(e);
         }
+    }
+    
+    public void dispCourseTablePop(int studID){
         try{           
             Connection conn = Db.java_db();
             String sql = "SELECT * FROM courses WHERE student_id = " + studID;
@@ -532,8 +654,8 @@ public class AdminFrame extends javax.swing.JFrame {
             System.out.println(e);
         }
         
-    }//GEN-LAST:event_modStudentActionPerformed
-
+    }
+    
     /**
      * this button will add the student to the database and display the generated
      * student ID number.
@@ -542,10 +664,13 @@ public class AdminFrame extends javax.swing.JFrame {
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
         int p = newIDGen();
-        JOptionPane.showMessageDialog(null, "The student's Institution ID is: "+p);
-        //add the student to the database with sql statements here
-        
-        
+        genIDLabel.setText("Generated ID: "+p);
+        String first = studFirstName.getText();
+        String last = studLastName.getText();
+        int passq = Integer.parseInt(passw.getText());
+
+        Login.addStudent(p, first, last, passq);
+        dispTableInfo();
     }//GEN-LAST:event_submitActionPerformed
 
     /**
@@ -555,9 +680,7 @@ public class AdminFrame extends javax.swing.JFrame {
      * @param evt the button click that initiates the action.
      */
     private void addClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassActionPerformed
-        // TODO add your handling code here:
-        //pull from stuID and new JLabel and pass to Update.java
-        int idNum = Integer.parseInt(stuID.getText());
+        int idNum = Integer.parseInt(stuID.getText());              //the value for the student ID  
         int courseID; String p,q = null;
         String x = String.valueOf(courseList.getSelectedItem());
         if(x.length()>4){
@@ -571,6 +694,7 @@ public class AdminFrame extends javax.swing.JFrame {
         courseID = Integer.parseInt(p); String courseName = q;
         System.out.println(idNum+"\t"+ courseID);   //tests values to be passed in following method
         Login.addClass(idNum, courseID, courseName);
+        dispCourseTablePop(idNum);
     }//GEN-LAST:event_addClassActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
@@ -668,6 +792,25 @@ public class AdminFrame extends javax.swing.JFrame {
         
     }
     
+    private void fillStudCombo(){
+        try{
+            Connection conn = Db.java_db();
+            String sql = "select * from student_info";
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                String studId = rs.getString("student_id");
+                String sFirst = rs.getString("first_name");
+                String sLast = rs.getString("last_name");
+                studSelection.addItem(studId+" "+sFirst+" "+sLast);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+    }
+    
     /**
      * this method clears the selections for the comboBoxes and text fields on
      * the Add Grades tab.
@@ -695,10 +838,39 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         courseSelect.removeAllItems();
         fillDelCourseCombo();
+        int studID = Integer.parseInt(String.valueOf(stuSel.getSelectedItem()));
+       
+        try{
+            Connection conn = Db.java_db();
+            String sql = "SELECT * FROM courses WHERE student_id = " + studID;
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            delClassTable.setModel(DbUtils.resultSetToTableModel(rs));             
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_stuSelItemStateChanged
 
     private void deleteCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseActionPerformed
         // TODO add your handling code here:
+        int studID = Integer.parseInt(String.valueOf(stuSel.getSelectedItem()));
+       
+        try{
+            Connection conn = Db.java_db();
+            String sql = "SELECT * FROM courses WHERE student_id = " + studID;
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            delClassTable.setModel(DbUtils.resultSetToTableModel(rs));
+              
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
         int courseID; String p;
         String x = String.valueOf(courseSelect.getSelectedItem());
         if(x.length()>4){
@@ -711,7 +883,21 @@ public class AdminFrame extends javax.swing.JFrame {
         int sdi = Integer.parseInt(String.valueOf(stuSel.getSelectedItem()));
         
         Login.delClass(sdi, courseID);
+        dispCourseTablePop(studID);
+        
     }//GEN-LAST:event_deleteCourseActionPerformed
+
+    private void delStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delStudentActionPerformed
+        // TODO add your handling code here:
+        int studID; String q =null;
+        String x = String.valueOf(studSelection.getSelectedItem());
+        if(x.length()>3){
+            q= x.substring(0,1);
+        }
+        studID = Integer.parseInt(q);
+        Login.deleteStudent(studID);
+        dispTableInfo();
+    }//GEN-LAST:event_delStudentActionPerformed
 
     /**
      * this method will pull the last id from the database, add one to it, and
@@ -719,10 +905,23 @@ public class AdminFrame extends javax.swing.JFrame {
      */
     private int newIDGen(){
         //pull the last id number from the database
-        int i = 4;
+        int i = 0;
+        try{
+            Connection conn = Db.java_db();
+            String sql = "SELECT * FROM student_info";
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                i++;
+            }
+            System.out.println(i);
+        }catch(Exception w){
+            System.out.println(w);
+        }
         
-        int newID = i + 1;
-        return newID;
+        return i+1;
     }
     
     /**
@@ -764,7 +963,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton addClass;
     private javax.swing.JPanel addGradesPanel;
     private javax.swing.JPanel addNew;
-    private javax.swing.JTabbedPane adminTabbedPane;
     private javax.swing.JScrollPane allCourseDisp;
     private javax.swing.JScrollPane allStudentDisp;
     private javax.swing.JComboBox<String> assignmentSelection;
@@ -777,16 +975,24 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> courseSelect;
     private javax.swing.JLabel courseSelectLabel;
     private javax.swing.JComboBox<String> courseSelection;
+    private javax.swing.JTable delClassTable;
+    private javax.swing.JButton delStudent;
     private javax.swing.JPanel deleteClass;
     private javax.swing.JButton deleteCourse;
+    private javax.swing.JPanel deleteStudent;
     private javax.swing.JLabel dispAllLabel;
     private javax.swing.JTable dispAllTable;
     private javax.swing.JTable dispCourseTable;
     private javax.swing.JLabel examLabel;
     private javax.swing.JButton exit;
+    private javax.swing.JLabel firstName;
+    private javax.swing.JLabel genIDLabel;
     private javax.swing.JTextField gradeEntered;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lastName;
     private javax.swing.JButton modStudent;
     private javax.swing.JPanel modify;
     private javax.swing.JTextField passw;
@@ -795,13 +1001,15 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JTable selStudTable;
     private javax.swing.JScrollPane selectStudentDisp;
     private javax.swing.JTextField stuID;
-    private javax.swing.JLabel stuNameLabel;
     private javax.swing.JComboBox<String> stuSel;
     private javax.swing.JLabel stuSelect;
-    private javax.swing.JTextField studName;
+    private javax.swing.JTextField studFirstName;
+    private javax.swing.JTextField studLastName;
+    private javax.swing.JComboBox<String> studSelection;
     private javax.swing.JLabel studentLabel;
     private javax.swing.JComboBox<String> studentSelection;
     private javax.swing.JButton submit;
+    private javax.swing.JLabel tableLabel;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
