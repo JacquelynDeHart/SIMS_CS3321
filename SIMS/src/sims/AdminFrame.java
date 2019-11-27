@@ -35,6 +35,8 @@ public class AdminFrame extends javax.swing.JFrame {
         "4328 Parallel Computing"};
         fillStudentCombo();
         fillStudCombo();
+        fillStudentSelectionCombo();
+        warningMessage.setVisible(false);
     }
 
     /**
@@ -96,6 +98,8 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         studSelection = new javax.swing.JComboBox<>();
         delStudent = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        warningMessage = new javax.swing.JTextArea();
         exit = new javax.swing.JButton();
         previous = new javax.swing.JButton();
 
@@ -254,7 +258,6 @@ public class AdminFrame extends javax.swing.JFrame {
         gradeLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         gradeLabel.setText("Enter Grade:");
 
-        studentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "1", "2", "3", "4" }));
         studentSelection.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 studentSelectionItemStateChanged(evt);
@@ -263,7 +266,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         courseSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        assignmentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<null>", "exam_one", "final_exam" }));
+        assignmentSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "exam_one", "final_exam" }));
 
         changeGrade.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         changeGrade.setMnemonic('g');
@@ -304,12 +307,12 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addComponent(clearSelections, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addGradesPanelLayout.createSequentialGroup()
                         .addGroup(addGradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(assignmentSelection, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(gradeEntered))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(warning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(courseSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(courseSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(534, Short.MAX_VALUE))
         );
         addGradesPanelLayout.setVerticalGroup(
@@ -504,6 +507,11 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel2.setText("Select Student: ");
 
         studSelection.setToolTipText("Select student to delete. This cannot be undone.");
+        studSelection.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                studSelectionItemStateChanged(evt);
+            }
+        });
 
         delStudent.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         delStudent.setText("Delete");
@@ -512,6 +520,13 @@ public class AdminFrame extends javax.swing.JFrame {
                 delStudentActionPerformed(evt);
             }
         });
+
+        warningMessage.setColumns(20);
+        warningMessage.setForeground(new java.awt.Color(217, 47, 47));
+        warningMessage.setLineWrap(true);
+        warningMessage.setRows(5);
+        warningMessage.setText("This student cannot be removed from the system. Please delete the courses this student is enrolled in first.");
+        jScrollPane2.setViewportView(warningMessage);
 
         javax.swing.GroupLayout deleteStudentLayout = new javax.swing.GroupLayout(deleteStudent);
         deleteStudent.setLayout(deleteStudentLayout);
@@ -525,16 +540,20 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(studSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(615, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         deleteStudentLayout.setVerticalGroup(
             deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteStudentLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(studSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGroup(deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(studSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delStudent)
                 .addContainerGap(322, Short.MAX_VALUE))
         );
@@ -579,7 +598,7 @@ public class AdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adminTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(adminTabbedPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exit)
@@ -671,6 +690,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         Login.addStudent(p, first, last, passq);
         dispTableInfo();
+        fillStudentSelectionCombo();
     }//GEN-LAST:event_submitActionPerformed
 
     /**
@@ -731,6 +751,7 @@ public class AdminFrame extends javax.swing.JFrame {
         //collect grade to add
         int grade = Integer.parseInt(gradeEntered.getText());
         Login.addGrades(sdi, courseID, asgn, grade);
+        dispCourseTablePop(sdi);
     }//GEN-LAST:event_changeGradeActionPerformed
 
     /**
@@ -791,6 +812,23 @@ public class AdminFrame extends javax.swing.JFrame {
         }
         
     }
+    
+private void fillStudentSelectionCombo(){
+    try{
+        Connection conn = Db.java_db();
+        String sql = "select * from student_info";
+        PreparedStatement pstmt = conn.prepareStatement(sql);  
+        ResultSet rs = pstmt.executeQuery();
+
+        while(rs.next()){
+            String studId = rs.getString("student_id");
+            studentSelection.addItem(studId);
+        }
+    }catch(Exception e){
+        System.out.println(e);
+    }
+
+}
     
     private void fillStudCombo(){
         try{
@@ -899,6 +937,31 @@ public class AdminFrame extends javax.swing.JFrame {
         dispTableInfo();
     }//GEN-LAST:event_delStudentActionPerformed
 
+    private void studSelectionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_studSelectionItemStateChanged
+        // TODO add your handling code here:
+        int studID; String q =null;
+        String x = String.valueOf(studSelection.getSelectedItem());
+        if(x.length()>3){
+            q = x.substring(0,1);
+        }
+        studID = Integer.parseInt(q);   int i=0;
+        try{
+            Connection conn = Db.java_db();
+            String sql = "select * from courses where student_id="+studID;
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                i++;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        if(i>0){
+            warningMessage.setVisible(true);
+        }
+    }//GEN-LAST:event_studSelectionItemStateChanged
+
     /**
      * this method will pull the last id from the database, add one to it, and
      * return the new number as the next ID number to be assigned to the new student.
@@ -992,6 +1055,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lastName;
     private javax.swing.JButton modStudent;
     private javax.swing.JPanel modify;
@@ -1011,5 +1075,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton submit;
     private javax.swing.JLabel tableLabel;
     private javax.swing.JLabel warning;
+    private javax.swing.JTextArea warningMessage;
     // End of variables declaration//GEN-END:variables
 }
