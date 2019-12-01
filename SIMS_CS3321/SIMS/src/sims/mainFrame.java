@@ -142,7 +142,6 @@ public class mainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //put following method body in a try/catch statement...
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
         //validate userID and password from database. if valid, change panels to 
         //appropriate one (Student || Admin)
 if (Integer.parseInt(instID.getText()) == 10){
